@@ -8,6 +8,7 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
 
+      "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       -- Install none-ls for diagnostics, code actions, and formatting
       "nvimtools/none-ls.nvim",

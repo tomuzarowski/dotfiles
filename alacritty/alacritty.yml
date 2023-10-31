@@ -11,7 +11,8 @@ window:
 
 font:
   normal:
-    family: "OperatorMonoMedium"
+    family: "Fantasque Sans Mono"
+    # family: "OperatorMonoMedium"
     # family: "ComicMono"
   size: 12.0
   offset:

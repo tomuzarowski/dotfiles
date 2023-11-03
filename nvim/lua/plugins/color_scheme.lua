@@ -4,6 +4,10 @@ return {
 		config = function()
 			require("onedark").setup({
 				style = "deep",
+				highlights = {
+					["@type"] = { fmt = "none" },
+					["@constructor"] = { fmt = "none" },
+				},
 			})
 			require("onedark").load()
 		end,

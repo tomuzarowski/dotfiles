@@ -306,16 +306,11 @@ xnoremap("<leader>p", '"_dP')
 vnoremap("<A-j>", ":m '>+1<CR>gv=gv")
 vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 
--- Terminal --
--- Enter normal mode while in a terminal
-tnoremap("<esc>", [[<C-\><C-n>]])
-tnoremap("jj", [[<C-\><C-n>]])
-
--- Window navigation from terminal
-tnoremap("<C-h>", [[<Cmd>wincmd h<CR>]])
-tnoremap("<C-j>", [[<Cmd>wincmd j<CR>]])
-tnoremap("<C-k>", [[<Cmd>wincmd k<CR>]])
-tnoremap("<C-l>", [[<Cmd>wincmd l<CR>]])
+-- Navigate between windows
+nnoremap("<C-l>", [[<C-w>l]])
+nnoremap("<C-h>", [[<C-w>h]])
+nnoremap("<C-j>", [[<C-w>j]])
+nnoremap("<C-k>", [[<C-w>k]])
 
 -- Reenable default <space> functionality to prevent input delay
 tnoremap("<space>", "<space>")

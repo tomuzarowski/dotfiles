@@ -29,7 +29,7 @@ nnoremap("<leader>z", "<cmd>wq<cr>", { silent = false })
 -- Map neo-tree to <leader>e
 nnoremap("<leader>e", "<cmd>Neotree toggle<cr>")
 -- Focus on current buffer in neo-tree
-nnoremap("<leader>E", "<cmd>Neotree action=focus<cr>")
+nnoremap("<leader>E", "<cmd>Neotree reveal<cr>")
 
 -- Center buffer while navigating
 nnoremap("<C-u>", "<C-u>zz")
@@ -208,6 +208,9 @@ end, { desc = "Search [G]it [F]iles" })
 nnoremap("<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 nnoremap("<leader>sb", require("telescope.builtin").buffers, { desc = "[S]earch Open [B]uffers" })
 nnoremap("<leader>sf", function()
+	require("telescope.builtin").find_files({ hidden = true })
+end, { desc = "[S]earch [F]iles" })
+nnoremap("<C-p>", function()
 	require("telescope.builtin").find_files({ hidden = true })
 end, { desc = "[S]earch [F]iles" })
 nnoremap("<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })

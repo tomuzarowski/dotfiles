@@ -2473,6 +2473,6 @@ tab_title_template "{index}: {title.split('/')[-1]}"
 
 
 # BEGIN_KITTY_THEME
-# Nightfox
+# Monokai
 include current-theme.conf
 # END_KITTY_THEME

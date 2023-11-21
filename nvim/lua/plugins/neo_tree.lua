@@ -1,34 +1,41 @@
 return {
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    config = function()
-      require("neo-tree").setup({
-        window = {
-          position = "right",
-        }
-      })
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-      {
-        "s1n7ax/nvim-window-picker",
-        name = "window-picker",
-        -- event = "VeryLazy",
-        version = "2.*",
-        config = function()
-          require("window-picker").setup()
-        end,
-      },
-    },
-  },
-  {
-    "antosha417/nvim-lsp-file-operations",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
-
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		config = function()
+			require("neo-tree").setup({
+				window = {
+					position = "right",
+				},
+				event_handlers = {
+					{
+						event = "file_opened",
+						handler = function()
+							require("neo-tree.command").execute({ action = "close" })
+						end,
+					},
+				},
+			})
+		end,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+			{
+				"s1n7ax/nvim-window-picker",
+				name = "window-picker",
+				-- event = "VeryLazy",
+				version = "2.*",
+				config = function()
+					require("window-picker").setup()
+				end,
+			},
+		},
+	},
+	{
+		"antosha417/nvim-lsp-file-operations",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
 }

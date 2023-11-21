@@ -89,7 +89,7 @@ return {
 						intelephense = {
 							environment = {
 								includePaths = {
-									"/home/tomek/Projects/",
+									"/home/empressia/Projects/",
 								},
 							},
 						},

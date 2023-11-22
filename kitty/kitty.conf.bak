@@ -14,8 +14,13 @@ map alt+5 goto_tab 5
 map alt+6 goto_tab 6
 
 tab_bar_style powerline
-tab_powerline_style round
+tab_powerline_style angled
 tab_title_template "{index}: {title.split('/')[-1]}"
+
+active_tab_foreground #fff
+active_tab_background #4f14bc
+inactive_tab_foreground #7f7f7f
+inactive_tab_background #0e0521
 
 # vim:fileencoding=utf-8:foldmethod=marker
 
@@ -2473,6 +2478,6 @@ tab_title_template "{index}: {title.split('/')[-1]}"
 
 
 # BEGIN_KITTY_THEME
-# Cyberpunk
+# Dark Pride
 include current-theme.conf
 # END_KITTY_THEME

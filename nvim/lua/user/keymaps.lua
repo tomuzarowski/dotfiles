@@ -309,11 +309,46 @@ xnoremap("<leader>p", '"_dP')
 vnoremap("<A-j>", ":m '>+1<CR>gv=gv")
 vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 
--- Navigate between windows
-nnoremap("<C-l>", [[<C-w>l]])
-nnoremap("<C-h>", [[<C-w>h]])
-nnoremap("<C-j>", [[<C-w>j]])
-nnoremap("<C-k>", [[<C-w>k]])
+-- Window +  better kitty navigation
+nnoremap("<C-j>", function()
+	if vim.fn.exists(":KittyNavigateDown") ~= 0 and TERM == "xterm-kitty" then
+		vim.cmd.KittyNavigateDown()
+	elseif vim.fn.exists(":TmuxNavigateDown") ~= 0 then
+		vim.cmd.TmuxNavigateDown()
+	else
+		vim.cmd.wincmd("j")
+	end
+end)
+
+nnoremap("<C-k>", function()
+	if vim.fn.exists(":KittyNavigateUp") ~= 0 and TERM == "xterm-kitty" then
+		vim.cmd.KittyNavigateUp()
+	elseif vim.fn.exists(":TmuxNavigateUp") ~= 0 then
+		vim.cmd.TmuxNavigateUp()
+	else
+		vim.cmd.wincmd("k")
+	end
+end)
+
+nnoremap("<C-l>", function()
+	if vim.fn.exists(":KittyNavigateRight") ~= 0 and TERM == "xterm-kitty" then
+		vim.cmd.KittyNavigateRight()
+	elseif vim.fn.exists(":TmuxNavigateRight") ~= 0 then
+		vim.cmd.TmuxNavigateRight()
+	else
+		vim.cmd.wincmd("l")
+	end
+end)
+
+nnoremap("<C-h>", function()
+	if vim.fn.exists(":KittyNavigateLeft") ~= 0 and TERM == "xterm-kitty" then
+		vim.cmd.KittyNavigateLeft()
+	elseif vim.fn.exists(":TmuxNavigateLeft") ~= 0 then
+		vim.cmd.TmuxNavigateLeft()
+	else
+		vim.cmd.wincmd("h")
+	end
+end)
 
 nnoremap("k", "gk")
 nnoremap("j", "gj")

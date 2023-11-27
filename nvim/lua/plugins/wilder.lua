@@ -9,6 +9,7 @@ return {
 		dependencies = {
 			"catppuccin/nvim",
 		},
+		event = "VeryLazy",
 		config = function()
 			local wilder = require("wilder")
 			local macchiato = require("catppuccin.palettes").get_palette("macchiato")

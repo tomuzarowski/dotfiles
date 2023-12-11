@@ -356,4 +356,7 @@ nnoremap("j", "gj")
 -- Reenable default <space> functionality to prevent input delay
 tnoremap("<space>", "<space>")
 
+-- Sort lines
+vnoremap("<F9>", ":'<,'>!sort<CR>")
+
 return M

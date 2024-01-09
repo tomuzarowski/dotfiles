@@ -27,9 +27,9 @@ nnoremap("<leader>q", "<cmd>q<cr>", { silent = false })
 nnoremap("<leader>z", "<cmd>wq<cr>", { silent = false })
 
 -- Map neo-tree to <leader>e
-nnoremap("<leader>e", "<cmd>Neotree toggle<cr>")
+nnoremap("<leader>E", "<cmd>Neotree toggle<cr>")
 -- Focus on current buffer in neo-tree
-nnoremap("<leader>E", "<cmd>Neotree reveal<cr>")
+nnoremap("<leader>e", "<cmd>Neotree reveal<cr>")
 
 -- Center buffer while navigating
 nnoremap("<C-u>", "<C-u>zz")

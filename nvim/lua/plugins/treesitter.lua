@@ -22,10 +22,11 @@ return {
 					"json",
 					"lua",
 					"markdown",
-          "php",
+					"php",
 					"tsx",
 					"typescript",
 					"vim",
+					"vimdoc",
 					-- "yaml", This is currently borked see: https://github.com/ikatyang/tree-sitter-yaml/issues/53
 				},
 				sync_install = false,

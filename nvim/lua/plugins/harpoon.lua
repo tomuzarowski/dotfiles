@@ -1,7 +1,4 @@
 return {
-	{
-		"ThePrimeagen/harpoon",
-		lazy = true,
-		branch = "harpoon2",
-	},
+	"ThePrimeagen/harpoon",
+	branch = "harpoon2",
 }

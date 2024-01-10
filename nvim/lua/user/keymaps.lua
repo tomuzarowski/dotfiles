@@ -3,10 +3,9 @@ local vnoremap = require("user.keymap_utils").vnoremap
 local inoremap = require("user.keymap_utils").inoremap
 local tnoremap = require("user.keymap_utils").tnoremap
 local xnoremap = require("user.keymap_utils").xnoremap
-local harpoon_ui = require("harpoon.ui")
-local harpoon_mark = require("harpoon.mark")
 local illuminate = require("illuminate")
 local utils = require("user.utils")
+local harpoon = require("harpoon")
 
 local M = {}
 
@@ -142,45 +141,38 @@ nnoremap("gx", ":sil !open <cWORD><cr>", { silent = true })
 nnoremap("<leader>tc", ":TSC<cr>", { desc = "[T]ypeScript [C]ompile" })
 
 -- Harpoon keybinds --
--- Open harpoon ui
-nnoremap("<leader>ho", function()
-	harpoon_ui.toggle_quick_menu()
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>ha", function()
+	harpoon:list():append()
 end)
 
--- Add current file to harpoon
-nnoremap("<leader>ha", function()
-	harpoon_mark.add_file()
+vim.keymap.set("n", "<leader>hr", function()
+	harpoon:list():remove()
 end)
 
--- Remove current file from harpoon
-nnoremap("<leader>hr", function()
-	harpoon_mark.rm_file()
+vim.keymap.set("n", "<leader>ho", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
 
--- Remove all files from harpoon
-nnoremap("<leader>hc", function()
-	harpoon_mark.clear_all()
+vim.keymap.set("n", "<leader>1", function()
+	harpoon:list():select(1)
 end)
 
--- Quickly jump to harpooned files
-nnoremap("<leader>1", function()
-	harpoon_ui.nav_file(1)
+vim.keymap.set("n", "<leader>2", function()
+	harpoon:list():select(2)
 end)
 
-nnoremap("<leader>2", function()
-	harpoon_ui.nav_file(2)
+vim.keymap.set("n", "<leader>3", function()
+	harpoon:list():select(3)
 end)
 
-nnoremap("<leader>3", function()
-	harpoon_ui.nav_file(3)
+vim.keymap.set("n", "<leader>4", function()
+	harpoon:list():select(4)
 end)
 
-nnoremap("<leader>4", function()
-	harpoon_ui.nav_file(4)
-end)
-
-nnoremap("<leader>5", function()
-	harpoon_ui.nav_file(5)
+vim.keymap.set("n", "<leader>5", function()
+	harpoon:list():select(5)
 end)
 
 -- Git keymaps --

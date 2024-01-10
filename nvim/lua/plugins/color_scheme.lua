@@ -1,27 +1,27 @@
 return {
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("tokyonight").setup({
-				vim.cmd("colorscheme tokyonight-night"),
-			})
-		end,
-	},
 	-- {
-	-- 	"navarasu/onedark.nvim",
+	-- 	"folke/tokyonight.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
 	-- 	config = function()
-	-- 		require("onedark").setup({
-	-- 			style = "deep",
-	-- 			highlights = {
-	-- 				["@type"] = { fmt = "none" },
-	-- 				["@constructor"] = { fmt = "none" },
-	-- 			},
+	-- 		require("tokyonight").setup({
+	-- 			vim.cmd("colorscheme tokyonight-night"),
 	-- 		})
-	-- 		require("onedark").load()
 	-- 	end,
 	-- },
+	{
+		"navarasu/onedark.nvim",
+		config = function()
+			require("onedark").setup({
+				style = "deep",
+				highlights = {
+					["@type"] = { fmt = "none" },
+					["@constructor"] = { fmt = "none" },
+				},
+			})
+			require("onedark").load()
+		end,
+	},
 	-- {
 	-- 	"catppuccin/nvim",
 	-- 	config = function()

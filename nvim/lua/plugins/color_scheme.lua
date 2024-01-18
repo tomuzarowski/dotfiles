@@ -1,4 +1,12 @@
 return {
+	{
+		"dracula/vim",
+		priority = 1000,
+		lazy = false,
+		config = function()
+			vim.cmd("colorscheme dracula")
+		end,
+	},
 	-- {
 	-- 	"folke/tokyonight.nvim",
 	-- 	lazy = false,
@@ -9,19 +17,19 @@ return {
 	-- 		})
 	-- 	end,
 	-- },
-	{
-		"navarasu/onedark.nvim",
-		config = function()
-			require("onedark").setup({
-				style = "deep",
-				highlights = {
-					["@type"] = { fmt = "none" },
-					["@constructor"] = { fmt = "none" },
-				},
-			})
-			require("onedark").load()
-		end,
-	},
+	-- {
+	-- 	"navarasu/onedark.nvim",
+	-- 	config = function()
+	-- 		require("onedark").setup({
+	-- 			style = "deep",
+	-- 			highlights = {
+	-- 				["@type"] = { fmt = "none" },
+	-- 				["@constructor"] = { fmt = "none" },
+	-- 			},
+	-- 		})
+	-- 		require("onedark").load()
+	-- 	end,
+	-- },
 	-- {
 	-- 	"catppuccin/nvim",
 	-- 	config = function()

@@ -1,13 +1,4 @@
 return {
-	{
-		"baliestri/aura-theme",
-		lazy = false,
-		priority = 1000,
-		config = function(plugin)
-			vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
-			vim.cmd([[colorscheme aura-dark]])
-		end,
-	},
 	-- {
 	-- 	"dracula/vim",
 	-- 	priority = 1000,
@@ -26,19 +17,19 @@ return {
 	-- 		})
 	-- 	end,
 	-- },
-	-- {
-	--   "navarasu/onedark.nvim",
-	--   config = function()
-	--     require("onedark").setup({
-	--       style = "deep",
-	--       highlights = {
-	--         ["@type"] = { fmt = "none" },
-	--         ["@constructor"] = { fmt = "none" },
-	--       },
-	--     })
-	--     require("onedark").load()
-	--   end,
-	-- },
+	{
+		"navarasu/onedark.nvim",
+		config = function()
+			require("onedark").setup({
+				style = "deep",
+				highlights = {
+					["@type"] = { fmt = "none" },
+					["@constructor"] = { fmt = "none" },
+				},
+			})
+			require("onedark").load()
+		end,
+	},
 	-- {
 	-- 	"catppuccin/nvim",
 	-- 	config = function()

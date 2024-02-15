@@ -141,8 +141,6 @@ nnoremap("gx", ":sil !open <cWORD><cr>", { silent = true })
 nnoremap("<leader>tc", ":TSC<cr>", { desc = "[T]ypeScript [C]ompile" })
 
 -- Harpoon keybinds --
-harpoon:setup()
-
 vim.keymap.set("n", "<leader>ha", function()
 	harpoon:list():append()
 end)

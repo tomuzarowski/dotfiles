@@ -8,7 +8,6 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 
-			"hrsh7th/nvim-cmp",
 			"hrsh7th/cmp-nvim-lsp",
 			-- Install none-ls for diagnostics, code actions, and formatting
 			"nvimtools/none-ls.nvim",
@@ -72,7 +71,6 @@ return {
 			local servers = {
 				astro = {},
 				bashls = {},
-				-- clangd = {},
 				cssls = {},
 				html = {},
 				jsonls = {},
@@ -133,7 +131,7 @@ return {
 					vim.lsp.buf.format({
 						filter = function(format_client)
 							-- Use Prettier to format TS/JS if it's available
-							return format_client.name ~= "tsserver" or not null_ls.is_registered("prettier")
+							return format_client.name ~= "tsserver" or not null_ls.is_registered("prettierd")
 						end,
 					})
 				end, { desc = "LSP: Format current buffer with LSP" })
@@ -161,30 +159,13 @@ return {
 
 			-- Congifure LSP linting, formatting, diagnostics, and code actions
 			local formatting = null_ls.builtins.formatting
-			local diagnostics = null_ls.builtins.diagnostics
-			local code_actions = null_ls.builtins.code_actions
 
 			null_ls.setup({
 				border = "rounded",
 				sources = {
 					-- formatting
-					formatting.prettier,
+					formatting.prettierd,
 					formatting.stylua,
-					formatting.ocamlformat,
-
-					-- diagnostics
-					diagnostics.eslint_d.with({
-						condition = function(utils)
-							return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json" })
-						end,
-					}),
-
-					-- code actions
-					code_actions.eslint_d.with({
-						condition = function(utils)
-							return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json" })
-						end,
-					}),
 				},
 			})
 

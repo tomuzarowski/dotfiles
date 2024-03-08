@@ -88,7 +88,6 @@ return {
 							environment = {
 								includePaths = {
 									"/Users/webdevtu/Code/",
-									"/home/empressia/Projects/",
 								},
 							},
 						},

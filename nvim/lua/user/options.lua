@@ -18,7 +18,7 @@ vim.opt.breakindent = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
 
--- Disable text wrap
+-- Enable text wrap
 vim.opt.wrap = true
 
 -- Set leader key to space
@@ -55,7 +55,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.clipboard = "unnamed,unnamedplus"
 
 -- Enable cursor line highlight
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
 
 -- Set fold settings
 -- These options were reccommended by nvim-ufo

@@ -22,6 +22,7 @@ return {
 					"php",
 					"tsx",
 					"typescript",
+					"vue",
 					"vim",
 					"vimdoc",
 					"twig",

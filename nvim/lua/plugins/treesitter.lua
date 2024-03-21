@@ -11,6 +11,7 @@ return {
 			---@diagnostic disable: missing-fields
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
+					"astro",
 					"bash",
 					"css",
 					"graphql",

@@ -93,6 +93,7 @@ return {
 						},
 					},
 				},
+				svelte = {},
 				tailwindcss = {},
 				tsserver = {
 					settings = {

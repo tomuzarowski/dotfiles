@@ -21,6 +21,7 @@ return {
 					"lua",
 					"markdown",
 					"php",
+					"svelte",
 					"tsx",
 					"typescript",
 					"vue",

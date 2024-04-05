@@ -23,6 +23,7 @@ return {
 				options = {
 					theme = "onedark",
 					globalstatus = true,
+					section_separators = { left = "", right = "" },
 				},
 			})
 		end,

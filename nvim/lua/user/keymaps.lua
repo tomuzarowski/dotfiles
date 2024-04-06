@@ -142,7 +142,7 @@ nnoremap("<leader>tc", ":TSC<cr>", { desc = "[T]ypeScript [C]ompile" })
 
 -- Harpoon keybinds --
 vim.keymap.set("n", "<leader>ha", function()
-	harpoon:list():append()
+	harpoon:list():add()
 end)
 
 vim.keymap.set("n", "<leader>hr", function()

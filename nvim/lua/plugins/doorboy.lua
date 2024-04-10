@@ -1,3 +1,0 @@
-return {
-  "itmammoth/doorboy.vim"
-}

@@ -2,10 +2,11 @@
 vim.opt.nu = true
 vim.opt.rnu = true
 
--- Set tabs to 2 spaces
+-- Set tabs to 4 spaces
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
+vim.opt.autoindent = true
 
 -- Enable auto indenting and set it to spaces
 vim.opt.smartindent = true
@@ -54,8 +55,11 @@ vim.opt.signcolumn = "yes"
 -- Enable access to System Clipboard
 vim.opt.clipboard = "unnamed,unnamedplus"
 
+-- Backspace
+vim.opt.backspace = "indent,eol,start"
+
 -- Enable cursor line highlight
--- vim.opt.cursorline = true
+vim.opt.cursorline = true
 
 -- Set fold settings
 -- These options were reccommended by nvim-ufo
@@ -70,3 +74,4 @@ vim.opt.scrolloff = 8
 
 -- Place a column line
 -- vim.opt.colorcolumn = "80"
+

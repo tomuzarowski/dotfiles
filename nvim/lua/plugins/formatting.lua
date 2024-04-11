@@ -13,7 +13,6 @@ return {
 				json = { "prettier" },
 				lua = { "stylua" },
 				markdown = { "prettier" },
-				php = { "pretty-php" },
 				svelte = { "prettier" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },

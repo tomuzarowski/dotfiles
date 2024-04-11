@@ -116,19 +116,19 @@ return {
 					},
 				})
 			end,
-			--   ["intelephense"] = function()
-			--     lspconfig["intelephense"].setup({
-			--     	settings = {
-			--     		intelephense = {
-			--     			environment = {
-			--     				includePaths = {
-			--     					"/Users/webdevtu/Code/",
-			--     				},
-			--     			},
-			--     		},
-			--     	},
-			--     })
-			-- end,
+			["intelephense"] = function()
+				lspconfig["intelephense"].setup({
+					settings = {
+						intelephense = {
+							environment = {
+								includePaths = {
+									"/Users/webdevtu/Code/",
+								},
+							},
+						},
+					},
+				})
+			end,
 			["lua_ls"] = function()
 				-- configure lua server (with special settings)
 				lspconfig["lua_ls"].setup({

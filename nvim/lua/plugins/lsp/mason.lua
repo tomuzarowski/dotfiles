@@ -39,7 +39,6 @@ return {
 			ensure_installed = {
 				"eslint_d",
 				"prettier",
-				"pretty-php",
 				"stylua",
 			},
 		})

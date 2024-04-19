@@ -23,3 +23,31 @@ keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to bottom split" })
 keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save current buffer" })
 
 keymap.set("v", "<F9>", ":'<,'>!sort<CR>", { desc = "Sort lines" })
+
+local ok = true
+for _, key in ipairs({ "h", "j", "k", "l", "+", "-" }) do
+	local count = 0
+	local timer = assert(vim.loop.new_timer())
+	local map = key
+	vim.keymap.set("n", key, function()
+		if vim.v.count > 0 then
+			count = 0
+		end
+		if count >= 7 then
+			ok = pcall(vim.notify, "Use vim motions mate!", vim.log.levels.WARN, {
+				keep = function()
+					return count >= 10
+				end,
+			})
+			if not ok then
+				return map
+			end
+		else
+			count = count + 1
+			timer:start(3000, 0, function()
+				count = 0
+			end)
+			return map
+		end
+	end, { expr = true, silent = true })
+end

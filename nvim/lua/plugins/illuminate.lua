@@ -1,10 +1,15 @@
 return {
 	{
 		"RRethy/vim-illuminate",
-		lazy = true,
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("illuminate").configure({
-				under_cursor = false,
+				under_cursor = true,
+				providers = {
+					"lsp",
+					"treesitter",
+					"regex",
+				},
 				filetypes_denylist = {
 					"DressingSelect",
 					"Outline",

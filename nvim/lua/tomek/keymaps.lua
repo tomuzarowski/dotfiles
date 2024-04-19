@@ -33,7 +33,7 @@ for _, key in ipairs({ "h", "j", "k", "l", "+", "-" }) do
 		if vim.v.count > 0 then
 			count = 0
 		end
-		if count >= 7 then
+		if count >= 10 then
 			ok = pcall(vim.notify, "Use vim motions mate!", vim.log.levels.WARN, {
 				keep = function()
 					return count >= 10

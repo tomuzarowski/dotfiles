@@ -14,6 +14,7 @@ return {
 				lua = { "stylua" },
 				markdown = { "prettier" },
 				svelte = { "prettier" },
+				twig = { "twig-cs-fixer" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
 				yaml = { "prettier" },

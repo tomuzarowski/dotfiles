@@ -1,6 +1,7 @@
 return {
 	"stevearc/oil.nvim",
 	event = "VeryLazy",
+	-- tag = "v2.8.0",
 	config = function()
 		require("oil").setup({
 			float = {
@@ -12,4 +13,3 @@ return {
 	end,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 }
-

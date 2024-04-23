@@ -40,7 +40,6 @@ return {
 				"eslint_d",
 				"prettier",
 				"stylua",
-				"twig-cs-fixer",
 			},
 		})
 	end,

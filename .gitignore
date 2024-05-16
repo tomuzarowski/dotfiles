@@ -9,3 +9,7 @@ raycast/
 *-lock.json
 starship.toml
 nvim.backup/
+gh/
+github-copilot/
+
+.gitignore

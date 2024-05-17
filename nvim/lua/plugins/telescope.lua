@@ -44,5 +44,6 @@ return {
 		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Show recent files" })
 		keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<CR>", { desc = "Find string in cwd" })
 		keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find todos" })
+		keymap.set("n", "<leader>fl", "<cmd>Telescope resume<CR>", { desc = "Find last search" })
 	end,
 }

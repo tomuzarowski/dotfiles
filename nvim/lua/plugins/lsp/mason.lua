@@ -31,7 +31,7 @@ return {
 				"lua_ls",
 				"svelte",
 				"tailwindcss",
-				"tsserver",
+				"ts_ls",
 			},
 		})
 

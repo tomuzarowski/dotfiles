@@ -75,7 +75,15 @@ return {
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			vim.diagnostic.config({
+				underline = true,
+				signs = {
+					active = {
+						{ name = hl, text = icon },
+					},
+				},
+				severity_sort = true,
+			})
 		end
 
 		mason_lspconfig.setup_handlers({

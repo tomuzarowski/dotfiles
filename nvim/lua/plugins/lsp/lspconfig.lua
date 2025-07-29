@@ -137,6 +137,19 @@ return {
 					},
 				})
 			end,
+			["phpactor"] = function()
+				lspconfig["phpactor"].setup({
+					capabilities = capabilities,
+					root_dir = lspconfig.util.root_pattern(".git"),
+					on_attach = function(client, bufnr)
+						client.server_capabilities.documentFormattingProvider = false
+						client.server_capabilities.documentRangeFormattingProvider = false
+					end,
+					settings = {
+						["phpactor.language_server_diagnostics"] = true,
+					},
+				})
+			end,
 			["lua_ls"] = function()
 				-- configure lua server (with special settings)
 				lspconfig["lua_ls"].setup({

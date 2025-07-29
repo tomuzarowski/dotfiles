@@ -32,6 +32,7 @@ return {
 				"svelte",
 				"tailwindcss",
 				"ts_ls",
+				"phpactor",
 			},
 		})
 

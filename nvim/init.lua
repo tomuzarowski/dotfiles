@@ -1,4 +1,4 @@
-require("tomek.options")
-require("tomek.keymaps")
-require("tomek.lazy")
-require("tomek.highlight_yank")
+require('user.options')
+require('user.keymaps')
+require('user.misc')
+require('user.lazy')

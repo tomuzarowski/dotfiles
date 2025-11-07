@@ -16,17 +16,17 @@ return {
 		require("mason-lspconfig").setup({
 			automatic_installation = true,
 			ensure_installed = {
-				"astro",
+				-- "astro",
 				"cssls",
 				"emmet_ls",
 				"html",
 				"intelephense",
 				"lua_ls",
-				"svelte",
+				-- "svelte",
 				"tailwindcss",
 				"ts_ls",
 				"phpactor",
-				"vue_ls",
+				-- "vue_ls",
 			},
 		})
 		require("mason-tool-installer").setup({

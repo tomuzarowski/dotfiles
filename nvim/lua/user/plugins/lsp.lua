@@ -133,13 +133,13 @@ return {
 
 		-- Keymaps
 		vim.keymap.set("n", "<Leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Show diagnostic" })
+		vim.keymap.set("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
+		vim.keymap.set("n", "<Leader>lr", ":LspRestart<CR>", { silent = true })
+		vim.keymap.set("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename" })
 		vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>")
-		vim.keymap.set("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 		vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>")
 		vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>")
-		vim.keymap.set("n", "<Leader>lr", ":LspRestart<CR>", { silent = true })
 		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-		vim.keymap.set("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename" })
 
 		-- Diagnostic configuration
 		vim.diagnostic.config({

@@ -19,6 +19,7 @@ return {
 				markdown = { "prettier" },
 				php = { "pint" },
 				svelte = { "prettier" },
+				twig = { "prettier" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
 				yaml = { "prettier" },

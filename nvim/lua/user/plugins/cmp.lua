@@ -82,9 +82,23 @@ return {
         }),
       },
       mapping = {
-        ["<Tab>"] = cmp.mapping(function(fallback)
+        ["<C-n>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<C-p>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            fallback()
           elseif luasnip.locally_jumpable(1) then
             luasnip.jump(1)
           elseif has_words_before() then
@@ -96,7 +110,7 @@ return {
         end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_prev_item()
+            fallback()
           elseif luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           else

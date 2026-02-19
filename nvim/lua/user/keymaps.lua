@@ -33,6 +33,8 @@ vim.keymap.set('n', '<C-Down>', ':resize -2<CR>')
 vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>')
 vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>')
 
+vim.keymap.set('n', '<leader>w', '<cmd>write<CR>', { desc = 'Save file' })
+
 -- Split windows.
 vim.keymap.set('n', '<leader>vs', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
 vim.keymap.set('n', '<leader>vh', '<cmd>split<CR>', { desc = 'Split window horizontally' })

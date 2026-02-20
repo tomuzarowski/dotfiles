@@ -1,12 +1,5 @@
 return {
 	"stevearc/conform.nvim",
-	opts = {
-		format_on_save = {
-			-- These options will be passed to conform.format()
-			timeout_ms = 1000,
-			-- lsp_format = "fallback",
-		},
-	},
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
@@ -25,7 +18,7 @@ return {
 				yaml = { "prettier" },
 			},
 			format_on_save = {
-				lsp_fallback = true,
+				lsp_format = "fallback",
 				async = false,
 				timeout_ms = 1000,
 			},

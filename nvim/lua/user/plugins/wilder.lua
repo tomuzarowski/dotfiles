@@ -6,19 +6,19 @@ return {
 			"/",
 			"?",
 		},
-		dependencies = {
-			"catppuccin/nvim",
-		},
 		event = "VeryLazy",
 		config = function()
 			local wilder = require("wilder")
-			local macchiato = require("catppuccin.palettes").get_palette("macchiato")
+
+			-- Catppuccin Macchiato palette colors (hardcoded to avoid loading the full colorscheme)
+			local text_color = "#cad3f5"
+			local mauve_color = "#c6a0f6"
 
 			-- Create a highlight group for the popup menu
 			local text_highlight =
-				wilder.make_hl("WilderText", { { a = 1 }, { a = 1 }, { foreground = macchiato.text } })
+				wilder.make_hl("WilderText", { { a = 1 }, { a = 1 }, { foreground = text_color } })
 			local mauve_highlight =
-				wilder.make_hl("WilderMauve", { { a = 1 }, { a = 1 }, { foreground = macchiato.mauve } })
+				wilder.make_hl("WilderMauve", { { a = 1 }, { a = 1 }, { foreground = mauve_color } })
 
 			-- Enable wilder when pressing :, / or ?
 			wilder.setup({ modes = { ":", "/", "?" }, enable_cmdline_enter = 0 })

@@ -25,7 +25,7 @@ return {
 				-- "svelte",
 				"tailwindcss",
 				"ts_ls",
-				"phpactor",
+				-- "phpactor",
 				-- "vue_ls",
 			},
 		})
@@ -41,6 +41,12 @@ return {
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+		-- Apply capabilities and common flags to all LSP servers
+		vim.lsp.config("*", {
+			capabilities = capabilities,
+			flags = { debounce_text_changes = 300 },
+		})
+
 		-- PHP
 		vim.lsp.config("intelephense", {
 			commands = {
@@ -50,15 +56,11 @@ return {
 					end,
 				},
 			},
-			capabilities = capabilities,
-			flags = { debounce_text_changes = 300 },
 		})
 		vim.lsp.enable({ "intelephense" })
 
-		vim.lsp.config("phpactor", {
-			capabilities = capabilities,
-		})
-		vim.lsp.enable({ "phpactor" })
+		-- phpactor LSP disabled — using intelephense as the primary PHP LSP
+		-- (phpactor plugin is still available for refactoring via :PhpactorContextMenu etc.)
 
 		-- Vue, JavaScript, TypeScript
 		vim.lsp.config("vue_ls", {
@@ -66,8 +68,6 @@ return {
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentRangeFormattingProvider = false
 			end,
-			capabilities = capabilities,
-			flags = { debounce_text_changes = 300 },
 		})
 		vim.lsp.enable({ "vue_ls" })
 
@@ -90,26 +90,20 @@ return {
 				"typescript.tsx",
 				"vue",
 			},
-			flags = { debounce_text_changes = 300 },
 		})
 		vim.lsp.enable({ "ts_ls" })
 
 		-- Tailwind CSS
-		vim.lsp.config("tailwindcss", {
-			capabilities = capabilities,
-			flags = { debounce_text_changes = 300 },
-		})
+		vim.lsp.config("tailwindcss", {})
 		vim.lsp.enable({ "tailwindcss" })
 
 		-- JSON
 		vim.lsp.config("jsonls", {
-			capabilities = capabilities,
 			settings = {
 				json = {
 					schemas = require("schemastore").json.schemas(),
 				},
 			},
-			flags = { debounce_text_changes = 300 },
 		})
 		vim.lsp.enable({ "jsonls" })
 
@@ -127,7 +121,6 @@ return {
 					},
 				},
 			},
-			flags = { debounce_text_changes = 300 },
 		})
 		vim.lsp.enable({ "lua_ls" })
 
@@ -136,9 +129,9 @@ return {
 		vim.keymap.set("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
 		vim.keymap.set("n", "<Leader>lr", ":LspRestart<CR>", { silent = true })
 		vim.keymap.set("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename" })
-		vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>")
-		vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>")
-		vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>")
+		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to definition" })
+		vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Go to implementation" })
+		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "Show references" })
 		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
 
 		-- Diagnostic configuration

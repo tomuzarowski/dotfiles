@@ -12,8 +12,8 @@ vim.keymap.set("n", "<leader>q", ":bufdo bdelete<CR>", { desc = "Delete all buff
 vim.keymap.set("n", "<leader>w", "<cmd>update<CR>", { desc = "Save file" })
 
 -- Diagnostics.
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [d]iagnostic" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [d]iagnostic" })
+vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, { desc = "Go to previous [d]iagnostic" })
+vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, { desc = "Go to next [d]iagnostic" })
 
 -- Maintain the cursor position when yanking a visual selection.
 -- http://ddrscott.github.io/blog/2016/yank-without-jank/

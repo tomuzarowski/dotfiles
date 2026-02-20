@@ -49,6 +49,20 @@ return {
 
 		-- PHP
 		vim.lsp.config("intelephense", {
+			init_options = {
+				licenceKey = vim.fn.readfile(vim.fn.expand("~/intelephense/licence.txt"))[1] or "",
+			},
+			settings = {
+				intelephense = {
+					inlayHints = {
+						parameterNames = { enabled = true },
+						parameterTypes = { enabled = true },
+						variableTypes = { enabled = true },
+						propertyDeclarationTypes = { enabled = true },
+						functionReturnTypes = { enabled = true },
+					},
+				},
+			},
 			commands = {
 				IntelephenseIndex = {
 					function()
@@ -123,6 +137,9 @@ return {
 			},
 		})
 		vim.lsp.enable({ "lua_ls" })
+
+		-- Inlay hints
+		vim.lsp.inlay_hint.enable(true)
 
 		-- Keymaps
 		vim.keymap.set("n", "<Leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Show diagnostic" })

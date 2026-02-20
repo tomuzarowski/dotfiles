@@ -8,6 +8,9 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Close all open buffers.
 vim.keymap.set("n", "<leader>q", ":bufdo bdelete<CR>", { desc = "Delete all buffers" })
 
+-- Save file.
+vim.keymap.set("n", "<leader>w", "<cmd>update<CR>", { desc = "Save file" })
+
 -- Diagnostics.
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [d]iagnostic" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [d]iagnostic" })
@@ -32,8 +35,6 @@ vim.keymap.set("n", "<C-Up>", ":resize +2<CR>")
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>")
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>")
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>")
-
-vim.keymap.set("n", "<leader>w", "<cmd>write<CR>", { desc = "Save file" })
 
 -- Split windows.
 vim.keymap.set("n", "<leader>vs", "<cmd>vsplit<CR>", { desc = "Split window vertically" })

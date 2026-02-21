@@ -75,10 +75,10 @@ cd ~/.dotfiles
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 
 # tmux
-ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/tmux ~/.config/tmux
 
 # AeroSpace
-ln -s ~/.dotfiles/aerospace/aerospace.toml ~/.aerospace.toml
+ln -s ~/.dotfiles/aerospace ~/.config/aerospace
 ```
 
 3. Install tmux plugins:

@@ -9,6 +9,7 @@ This repository contains configurations for:
 - **Neovim** - Modern Vim-based editor with Lua configuration
 - **tmux** - Terminal multiplexer with custom keybindings
 - **AeroSpace** - macOS tiling window manager
+- **opencode** - AI coding assistant configuration
 
 ## Components
 
@@ -61,6 +62,13 @@ Located in `aerospace/` - macOS tiling window manager configuration:
 
 See `aerospace/aerospace.toml` for complete configuration.
 
+### opencode
+
+Located in `opencode/` - Configuration for the [opencode](https://opencode.ai) AI coding assistant:
+- MCP server configurations (Playwright, Pencil)
+- Browser automation settings
+- Tool integrations
+
 ## Installation
 
 1. Clone the repository:
@@ -79,6 +87,9 @@ ln -s ~/.dotfiles/tmux ~/.config/tmux
 
 # AeroSpace
 ln -s ~/.dotfiles/aerospace ~/.config/aerospace
+
+# opencode
+ln -s ~/.dotfiles/opencode ~/.config/opencode
 ```
 
 3. Install tmux plugins:
@@ -93,6 +104,7 @@ ln -s ~/.dotfiles/aerospace ~/.config/aerospace
 - [Neovim](https://neovim.io/) (v0.9+)
 - [tmux](https://github.com/tmux/tmux)
 - [AeroSpace](https://nikitabobko.github.io/AeroSpace/)
+- [opencode](https://opencode.ai)
 - Git
 
 ## License

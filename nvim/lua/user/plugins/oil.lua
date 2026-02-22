@@ -1,10 +1,13 @@
 return {
 	"stevearc/oil.nvim",
 	opts = {
-		-- Configuration for the floating window in oil.open_float
+		default_file_explorer = true,
 		float = {
 			max_width = 0.9,
 			max_height = 0.8,
+		},
+		view_options = {
+			show_hidden = true,
 		},
 	},
 	dependencies = {

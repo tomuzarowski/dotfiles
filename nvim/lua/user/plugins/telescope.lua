@@ -39,6 +39,7 @@ return {
 		local keymap = vim.keymap
 
 		keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", { desc = "Find files in cwd" })
+		keymap.set("n", "<C-b>", "<cmd>Telescope buffers<CR>", { desc = "Show open buffers in cwd" })
 		keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Show open buffers in cwd" })
 		keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<CR>", { desc = "Find string under cursor in cwd" })
 		keymap.set("n", "<leader>ff", "<cmd>Telescope git_files<CR>", { desc = "Find in git files" })

@@ -60,6 +60,7 @@ return {
       'regex',
       'sql',
       'svelte',
+      'twig',
       'typescript',
       'vim',
       'vimdoc',
@@ -68,21 +69,21 @@ return {
       'yaml',
     },
     auto_install = true,
-    highlight = {
-      enable = true,
-    },
-    indent = {
-      enable = true,
-      disable = { "yaml" }
-    },
   },
   config = function (_, opts)
     vim.filetype.add({
       pattern = {
         ['.*%.blade%.php'] = 'blade',
+        ['.*%.twig'] = 'twig',
       },
     })
 
     require('nvim-treesitter').setup(opts)
+
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+      end,
+    })
   end,
 }

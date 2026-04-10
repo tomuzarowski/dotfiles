@@ -32,8 +32,17 @@ return {
       end,
     },
   },
-  opts = {
-    ensure_installed = {
+  config = function()
+    vim.filetype.add({
+      pattern = {
+        ['.*%.blade%.php'] = 'blade',
+        ['.*%.twig'] = 'twig',
+      },
+    })
+
+    require('nvim-treesitter').setup()
+
+    require('nvim-treesitter').install({
       'bash',
       'blade',
       'comment',
@@ -67,18 +76,7 @@ return {
       'vue',
       'xml',
       'yaml',
-    },
-    auto_install = true,
-  },
-  config = function (_, opts)
-    vim.filetype.add({
-      pattern = {
-        ['.*%.blade%.php'] = 'blade',
-        ['.*%.twig'] = 'twig',
-      },
     })
-
-    require('nvim-treesitter').setup(opts)
 
     vim.api.nvim_create_autocmd('FileType', {
       callback = function(args)

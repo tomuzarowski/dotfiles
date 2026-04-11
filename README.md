@@ -15,7 +15,7 @@ This repository contains configurations for:
 
 ### Neovim
 
-Located in `nvim/` - A fully featured Neovim setup using:
+Located in `home/.config/nvim/` - A fully featured Neovim setup using:
 - **Plugin Manager**: [lazy.nvim](https://github.com/folke/lazy.nvim)
 - **Key Features**:
   - LSP support with autocomplete (nvim-cmp)
@@ -29,11 +29,11 @@ Located in `nvim/` - A fully featured Neovim setup using:
   - Harpoon for quick file navigation
   - Tokyo Night color theme
 
-See `nvim/lua/user/plugins/` for the full list of configured plugins.
+See `home/.config/nvim/lua/user/plugins/` for the full list of configured plugins.
 
 ### tmux
 
-Located in `tmux/` - Terminal multiplexer configuration featuring:
+Located in `home/.config/tmux/` - Terminal multiplexer configuration featuring:
 - **Prefix Key**: `Ctrl+a` (instead of default `Ctrl+b`)
 - **Split Bindings**:
   - `|` - Split horizontally
@@ -49,7 +49,7 @@ Located in `tmux/` - Terminal multiplexer configuration featuring:
 
 ### AeroSpace
 
-Located in `aerospace/` - macOS tiling window manager configuration:
+Located in `home/.config/aerospace/` - macOS tiling window manager configuration:
 - Auto-starts at login
 - **Keybindings** (examples):
   - `Alt+Shift+Enter` - Open new terminal
@@ -60,11 +60,11 @@ Located in `aerospace/` - macOS tiling window manager configuration:
 - Mouse follows focus
 - Auto-layout based on monitor orientation
 
-See `aerospace/aerospace.toml` for complete configuration.
+See `home/.config/aerospace/aerospace.toml` for complete configuration.
 
 ### opencode
 
-Located in `opencode/` - Configuration for the [opencode](https://opencode.ai) AI coding assistant:
+Located in `home/.config/opencode/` - Configuration for the [opencode](https://opencode.ai) AI coding assistant:
 - MCP server configurations (Playwright, Pencil)
 - Browser automation settings
 - Tool integrations
@@ -77,20 +77,12 @@ git clone <repo-url> ~/.dotfiles
 cd ~/.dotfiles
 ```
 
-2. Create symlinks:
+2. Run the install script:
 ```bash
-# Neovim
-ln -s ~/.dotfiles/nvim ~/.config/nvim
-
-# tmux
-ln -s ~/.dotfiles/tmux ~/.config/tmux
-
-# AeroSpace
-ln -s ~/.dotfiles/aerospace ~/.config/aerospace
-
-# opencode
-ln -s ~/.dotfiles/opencode ~/.config/opencode
+./install.sh
 ```
+
+This will install Homebrew and [GNU Stow](https://www.gnu.org/software/stow/) if needed, then create symlinks from `home/.config/` into `~/.config/` via Stow.
 
 3. Install tmux plugins:
    - Press `Ctrl+a` then `I` (capital i) in tmux to install TPM plugins
@@ -101,6 +93,7 @@ ln -s ~/.dotfiles/opencode ~/.config/opencode
 ## Requirements
 
 - macOS
+- [Homebrew](https://brew.sh/)
 - [Neovim](https://neovim.io/) (v0.9+)
 - [tmux](https://github.com/tmux/tmux)
 - [AeroSpace](https://nikitabobko.github.io/AeroSpace/)

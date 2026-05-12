@@ -10,6 +10,7 @@ This repository contains configurations for:
 - **tmux** - Terminal multiplexer with custom keybindings
 - **AeroSpace** - macOS tiling window manager
 - **opencode** - AI coding assistant configuration
+- **Ghostty** - Terminal emulator configuration
 
 ## Components
 
@@ -69,6 +70,13 @@ Located in `home/.config/opencode/` - Configuration for the [opencode](https://o
 - Browser automation settings
 - Tool integrations
 
+### Ghostty
+
+Located in `home/.config/ghostty/` - Configuration for the [Ghostty](https://ghostty.org) terminal emulator.
+
+Ghostty loads this file via the XDG configuration path:
+`~/.config/ghostty/config.ghostty`
+
 ## Installation
 
 1. Clone the repository:
@@ -98,6 +106,7 @@ This will install Homebrew and [GNU Stow](https://www.gnu.org/software/stow/) if
 - [tmux](https://github.com/tmux/tmux)
 - [AeroSpace](https://nikitabobko.github.io/AeroSpace/)
 - [opencode](https://opencode.ai)
+- [Ghostty](https://ghostty.org)
 - Git
 
 ## License

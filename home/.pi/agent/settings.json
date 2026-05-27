@@ -2,5 +2,9 @@
   "lastChangelogVersion": "0.75.5",
   "defaultProvider": "opencode-go",
   "defaultModel": "glm-5.1",
-  "defaultThinkingLevel": "medium"
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:pi-web-access",
+    "npm:@juicesharp/rpiv-ask-user-question"
+  ]
 }

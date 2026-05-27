@@ -50,6 +50,18 @@ if [ -d "$DOTFILES_DIR/home/.config" ]; then
   done
 fi
 
+# Remove existing files/symlinks that stow will replace under ~/.pi
+if [ -d "$DOTFILES_DIR/home/.pi" ]; then
+  for path in $(cd "$DOTFILES_DIR/home" && find .pi -type f); do
+    target="$HOME/$path"
+    if [ -L "$target" ] || [ -f "$target" ]; then
+      warn "Removing old file/symlink: $target"
+      rm "$target"
+      removed_links+=("$path")
+    fi
+  done
+fi
+
 info "Creating symlinks with GNU Stow..."
 cd "$DOTFILES_DIR"
 stow -t ~ home

@@ -10,6 +10,7 @@ This repository contains configurations for:
 - **tmux** - Terminal multiplexer with custom keybindings
 - **AeroSpace** - macOS tiling window manager
 - **opencode** - AI coding assistant configuration
+- **pi.dev** - AI coding agent
 - **Ghostty** - Terminal emulator configuration
 
 ## Components
@@ -70,6 +71,12 @@ Located in `home/.config/opencode/` - Configuration for the [opencode](https://o
 - Browser automation settings
 - Tool integrations
 
+### pi.dev
+
+Located in `home/.pi/` - Configuration for [pi.dev](https://pi.dev) AI coding agent:
+- Settings file (`settings.json`) with default provider/model/thinking level
+- Note: `auth.json`, `bin/`, and `sessions/` are excluded from the repo (sensitive/runtime data)
+
 ### Ghostty
 
 Located in `home/.config/ghostty/` - Configuration for the [Ghostty](https://ghostty.org) terminal emulator.
@@ -90,7 +97,7 @@ cd ~/.dotfiles
 ./install.sh
 ```
 
-This will install Homebrew and [GNU Stow](https://www.gnu.org/software/stow/) if needed, then create symlinks from `home/.config/` into `~/.config/` via Stow.
+This will install Homebrew and [GNU Stow](https://www.gnu.org/software/stow/) if needed, then create symlinks from `home/.config/` into `~/.config/` and `home/.pi/` into `~/.pi/` via Stow.
 
 3. Install tmux plugins:
    - Press `Ctrl+a` then `I` (capital i) in tmux to install TPM plugins
@@ -106,6 +113,7 @@ This will install Homebrew and [GNU Stow](https://www.gnu.org/software/stow/) if
 - [tmux](https://github.com/tmux/tmux)
 - [AeroSpace](https://nikitabobko.github.io/AeroSpace/)
 - [opencode](https://opencode.ai)
+- [pi.dev](https://pi.dev)
 - [Ghostty](https://ghostty.org)
 - Git
 

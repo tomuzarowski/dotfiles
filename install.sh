@@ -36,6 +36,23 @@ if ! command -v stow &>/dev/null; then
   installed_stow=1
 fi
 
+# Ensure Node.js is available (needed for pi)
+if ! command -v node &>/dev/null; then
+  info "Installing Node.js via nvm..."
+  if [ ! -d "$HOME/.nvm" ]; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+  fi
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm install --lts
+fi
+
+# Install pi if not present (needed for packages)
+if ! command -v pi &>/dev/null; then
+  info "Installing pi coding agent..."
+  npm install -g @earendil-works/pi-coding-agent
+fi
+
 # Remove existing symlinks for any package we're about to stow
 if [ -d "$DOTFILES_DIR/home/.config" ]; then
   for path in "$DOTFILES_DIR"/home/.config/*/; do

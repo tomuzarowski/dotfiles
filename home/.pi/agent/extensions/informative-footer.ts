@@ -72,12 +72,20 @@ function installFooter(pi: ExtensionAPI, ctx: ExtensionContext) {
 			dispose: unsubscribe,
 			invalidate() {},
 			render(width: number): string[] {
-				let location = formatCwd(ctx.sessionManager.getCwd());
+				const cwd = formatCwd(ctx.sessionManager.getCwd());
 				const branch = footerData.getGitBranch();
-				if (branch) location += ` (${branch})`;
-
 				const sessionName = ctx.sessionManager.getSessionName();
-				if (sessionName) location += ` • ${sessionName}`;
+				const location = `${cwd}${branch ? ` (${branch})` : ""}${sessionName ? ` • ${sessionName}` : ""}`;
+
+				const renderLocation = (pathBudget: number) => {
+					const fixedWidth = (branch ? visibleWidth(` (${branch})`) : 0) + (sessionName ? visibleWidth(` • ${sessionName}`) : 0);
+					const cwdWidth = Math.max(4, pathBudget - fixedWidth);
+					return [
+						theme.fg("dim", truncateToWidth(cwd, cwdWidth, "…")),
+						branch ? `${theme.fg("dim", " (")}${theme.fg("accent", branch)}${theme.fg("dim", ")")}` : "",
+						sessionName ? theme.fg("dim", ` • ${sessionName}`) : "",
+					].join("");
+				};
 
 				const sep = theme.fg("dim", " │ ");
 				const softSpace = theme.fg("dim", " ");
@@ -113,8 +121,7 @@ function installFooter(pi: ExtensionAPI, ctx: ExtensionContext) {
 
 				const middle = [stats.join(softSpace), cost, context].filter(Boolean).join(sep);
 				const locationMax = Math.max(12, Math.min(34, Math.floor(width * 0.3)));
-				const leftPlain = truncateToWidth(location, locationMax, "…");
-				const left = theme.fg("accent", leftPlain);
+				const left = renderLocation(locationMax);
 				const right = [middle, modelPart].filter(Boolean).join(sep);
 
 				let mainLine: string;
@@ -123,7 +130,7 @@ function installFooter(pi: ExtensionAPI, ctx: ExtensionContext) {
 				} else if (width >= 90) {
 					mainLine = truncateToWidth(`${left}${sep}${right}`, width, "…");
 				} else {
-					const first = truncateToWidth(`${theme.fg("accent", location)}${sep}${modelPart}`, width, "…");
+					const first = truncateToWidth(`${renderLocation(width)}${sep}${modelPart}`, width, "…");
 					const second = truncateToWidth(middle, width, "…");
 					const lines = [first, second];
 					const statuses = footerData.getExtensionStatuses();

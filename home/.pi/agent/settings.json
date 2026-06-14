@@ -1,12 +1,13 @@
 {
-  "lastChangelogVersion": "0.78.0",
+  "lastChangelogVersion": "0.79.3",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-web-access",
     "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:@firstpick/pi-themes-bundle"
+    "npm:@firstpick/pi-themes-bundle",
+    "npm:pi-mcp-extension"
   ],
   "theme": "dracula"
 }

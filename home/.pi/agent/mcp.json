@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "paper": {
+      "transport": "streamable-http",
+      "url": "http://127.0.0.1:29979/mcp",
+      "lifecycle": "lazy"
+    }
+  }
+}

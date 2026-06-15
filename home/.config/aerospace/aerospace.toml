@@ -226,5 +226,13 @@ if.app-id = 'com.electron.dockerdesktop'
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'dev.warp.Warp-Stable'
+run = 'layout floating'
+
+[[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = 'layout floating'

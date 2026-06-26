@@ -10,12 +10,3 @@ home/.config/nvim/lazy-lock.json
 home/.config/opencode/node_modules/
 home/.config/opencode/package-lock.json
 home/.config/opencode/bun.lock
-
-# Pi runtime/secret files (not tracked)
-home/.pi/agent/auth.json
-home/.pi/agent/bin/
-home/.pi/agent/sessions/
-home/.pi/agent/npm/
-home/.pi/package-lock.json
-home/.pi/node_modules/
-home/.pi/tsconfig.json

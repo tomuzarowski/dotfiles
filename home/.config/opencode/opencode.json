@@ -21,8 +21,5 @@
       "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
       "enabled": true
     }
-  },
-  "plugin": [
-    "./plugins/caveman/plugin.js"
-  ]
+  }
 }

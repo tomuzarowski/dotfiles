@@ -10,20 +10,8 @@ return {
 			show_hidden = true,
 		},
 	},
-	dependencies = {
-		{
-			"echasnovski/mini.icons",
-			opts = {},
-			config = function(_, opts)
-				local icons = require("mini.icons")
-				icons.setup(opts)
-				-- Provide backward compatibility for plugins that expect nvim-web-devicons
-				icons.mock_nvim_web_devicons()
-			end,
-		},
-	},
 	lazy = false,
 	keys = {
-		{ "-", ":Oil --float<CR>", desc = "Open parent directory" },
+		{ "-", "<cmd>Oil --float<CR>", desc = "Open parent directory" },
 	},
 }

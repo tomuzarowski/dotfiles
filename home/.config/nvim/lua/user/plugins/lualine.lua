@@ -1,9 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
   lazy = false,
-  dependencies = {
-    { 'echasnovski/mini.icons', opts = {} },
-  },
   opts = {
     options = {
       section_separators = '',
@@ -28,7 +25,7 @@ return {
           symbols = { added = ' ', modified = ' ', removed = ' ' },
         },
         function ()
-          return '󰅭 ' .. vim.pesc(tostring(#vim.tbl_keys(vim.lsp.get_clients())) or '')
+          return '󰅭 ' .. #vim.lsp.get_clients({ bufnr = 0 })
         end,
         { 'diagnostics', sources = { 'nvim_diagnostic' } },
       },

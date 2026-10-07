@@ -21,8 +21,6 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '▸ ', trail = '·', nbsp = '␣' }
 vim.opt.fillchars:append({ eob = ' ' })
 
-vim.opt.mousemoveevent = true
-
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
@@ -33,15 +31,20 @@ vim.opt.confirm = true
 vim.opt.undofile = true
 
 vim.opt.wildmode = 'longest:full,full'
-vim.opt.completeopt = 'menuone,longest,preview'
+vim.opt.completeopt = 'menuone,noselect,popup'
 
 vim.opt.signcolumn = 'yes:2'
 
 vim.opt.showmode = false
 
-vim.opt.updatetime = 100   -- Decrease update time
+vim.opt.updatetime = 250   -- Decrease update time
 vim.opt.redrawtime = 10000 -- Allow more time for loading syntax on large files
+vim.opt.ttimeoutlen = 10  -- Shorter wait after <Esc> for a possible key sequence
 
 vim.opt.cursorline = true
 
 vim.opt.scrolloff = 2
+
+vim.opt.winborder = 'rounded'
+
+vim.opt.inccommand = 'split'

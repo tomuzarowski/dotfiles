@@ -33,13 +33,6 @@ return {
     },
   },
   config = function()
-    vim.filetype.add({
-      pattern = {
-        ['.*%.blade%.php'] = 'blade',
-        ['.*%.twig'] = 'twig',
-      },
-    })
-
     require('nvim-treesitter').setup()
 
     require('nvim-treesitter').install({
@@ -78,6 +71,8 @@ return {
     })
 
     vim.api.nvim_create_autocmd('FileType', {
+      desc = 'start treesitter highlighting',
+      group = vim.api.nvim_create_augroup('treesitter-start', { clear = true }),
       callback = function(args)
         pcall(vim.treesitter.start, args.buf)
       end,

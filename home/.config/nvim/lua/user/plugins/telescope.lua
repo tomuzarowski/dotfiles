@@ -1,11 +1,20 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "master",
+	cmd = "Telescope",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		{ "echasnovski/mini.icons", opts = {} },
-        "BurntSushi/ripgrep",
+	},
+	keys = {
+		{ "<C-p>", "<cmd>Telescope find_files<CR>", desc = "Find files in cwd" },
+		{ "<C-b>", "<cmd>Telescope buffers<CR>", desc = "Show open buffers in cwd" },
+		{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Show open buffers in cwd" },
+		{ "<leader>fc", "<cmd>Telescope grep_string<CR>", desc = "Find string under cursor in cwd" },
+		{ "<leader>ff", "<cmd>Telescope git_files<CR>", desc = "Find in git files" },
+		{ "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Show recent files" },
+		{ "<leader>fs", "<cmd>Telescope live_grep<CR>", desc = "Find string in cwd" },
+		{ "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Find todos" },
+		{ "<leader>fl", "<cmd>Telescope resume<CR>", desc = "Find last search" },
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -22,9 +31,9 @@ return {
 					},
 				},
 				file_ignore_patterns = {
-					"node_modules",
+					"node_modules/",
 					"yarn.lock",
-					".git",
+					"^%.git/",
 				},
 			},
 			pickers = {
@@ -35,17 +44,5 @@ return {
 		})
 
 		telescope.load_extension("fzf")
-
-		local keymap = vim.keymap
-
-		keymap.set("n", "<C-p>", "<cmd>Telescope find_files<CR>", { desc = "Find files in cwd" })
-		keymap.set("n", "<C-b>", "<cmd>Telescope buffers<CR>", { desc = "Show open buffers in cwd" })
-		keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Show open buffers in cwd" })
-		keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<CR>", { desc = "Find string under cursor in cwd" })
-		keymap.set("n", "<leader>ff", "<cmd>Telescope git_files<CR>", { desc = "Find in git files" })
-		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Show recent files" })
-		keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<CR>", { desc = "Find string in cwd" })
-		keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find todos" })
-		keymap.set("n", "<leader>fl", "<cmd>Telescope resume<CR>", { desc = "Find last search" })
 	end,
 }

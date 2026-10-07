@@ -1,57 +1,18 @@
 return {
 	"neovim/nvim-lspconfig",
-	event = "VeryLazy",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"b0o/schemastore.nvim",
 	},
 	config = function()
-		require("mason").setup({
-			ui = {
-				height = 0.8,
-			},
-		})
-		require("mason-lspconfig").setup({
-			automatic_installation = true,
-			ensure_installed = {
-				-- "astro",
-				"cssls",
-				"emmet_ls",
-				"html",
-				"intelephense",
-				"jsonls",
-				"lua_ls",
-				"svelte",
-				"tailwindcss",
-				"ts_ls",
-				-- "phpactor",
-				-- "vue_ls",
-			},
-		})
-		require("mason-tool-installer").setup({
-			ensure_installed = {
-				"eslint_d",
-				"prettier",
-				"stylua",
-				"biome",
-				"pint",
-			},
-		})
-
-		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-		-- Apply capabilities and common flags to all LSP servers
-		vim.lsp.config("*", {
-			capabilities = capabilities,
-			flags = { debounce_text_changes = 300 },
-		})
-
 		-- PHP
+		local licence_file = vim.fn.expand("~/intelephense/licence.txt")
 		vim.lsp.config("intelephense", {
 			init_options = {
-				licenceKey = vim.fn.readfile(vim.fn.expand("~/intelephense/licence.txt"))[1] or "",
+				licenceKey = vim.fn.filereadable(licence_file) == 1 and vim.fn.readfile(licence_file)[1] or nil,
 			},
 			settings = {
 				intelephense = {
@@ -64,35 +25,32 @@ return {
 					},
 				},
 			},
-			commands = {
-				IntelephenseIndex = {
-					function()
-						vim.lsp.buf.execute_command({ command = "intelephense.index.workspace" })
-					end,
-				},
-			},
 		})
-		vim.lsp.enable({ "intelephense" })
 
-		-- phpactor LSP disabled — using intelephense as the primary PHP LSP
-		-- (phpactor plugin is still available for refactoring via :PhpactorContextMenu etc.)
+		vim.api.nvim_create_user_command("IntelephenseIndex", function()
+			local client = vim.lsp.get_clients({ name = "intelephense", bufnr = 0 })[1]
+			if client then
+				client:exec_cmd({ title = "Index workspace", command = "intelephense.index.workspace" })
+			end
+		end, { desc = "Reindex the intelephense workspace" })
 
 		-- Vue, JavaScript, TypeScript
 		vim.lsp.config("vue_ls", {
-			on_attach = function(client, bufnr)
+			on_attach = function(client)
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentRangeFormattingProvider = false
 			end,
 		})
-		vim.lsp.enable({ "vue_ls" })
 
 		vim.lsp.config("ts_ls", {
 			init_options = {
 				plugins = {
 					{
 						name = "@vue/typescript-plugin",
-						location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-						languages = { "javascript", "typescript", "vue" },
+						location = vim.fn.stdpath("data")
+							.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+						languages = { "vue" },
+						configNamespace = "typescript",
 					},
 				},
 			},
@@ -106,62 +64,69 @@ return {
 				"vue",
 			},
 		})
-		vim.lsp.enable({ "ts_ls" })
-
-		-- Tailwind CSS
-		vim.lsp.config("tailwindcss", {})
-		vim.lsp.enable({ "tailwindcss" })
 
 		-- JSON
 		vim.lsp.config("jsonls", {
 			settings = {
 				json = {
 					schemas = require("schemastore").json.schemas(),
+					validate = { enable = true },
 				},
 			},
 		})
-		vim.lsp.enable({ "jsonls" })
 
-		-- Lua
-		vim.lsp.config("lua_ls", {
-			settings = {
-				Lua = {
-					runtime = { version = "LuaJIT" },
-					workspace = {
-						checkThirdParty = false,
-						library = {
-							"${3rd}/luv/library",
-							unpack(vim.api.nvim_get_runtime_file("", true)),
-						},
-					},
-				},
+		-- Servers listed here are installed and enabled automatically.
+		require("mason").setup({
+			ui = {
+				height = 0.8,
 			},
 		})
-		vim.lsp.enable({ "lua_ls" })
+		require("mason-lspconfig").setup({
+			automatic_enable = {
+				-- installed in Mason as formatters/leftovers, not wanted as language servers
+				exclude = { "biome", "emmet_ls", "stylua" },
+			},
+			ensure_installed = {
+				"cssls",
+				"emmet_language_server",
+				"html",
+				"intelephense",
+				"jsonls",
+				"lua_ls",
+				"svelte",
+				"tailwindcss",
+				"ts_ls",
+				"vue_ls",
+				"copilot", -- sign in once with :LspCopilotSignIn
+			},
+		})
+		require("mason-tool-installer").setup({
+			ensure_installed = {
+				"prettier",
+				"stylua",
+				"pint",
+			},
+		})
 
-		-- Inlay hints
 		vim.lsp.inlay_hint.enable(true)
 
-		-- Keymaps
-		vim.keymap.set("n", "<Leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Show diagnostic" })
-		vim.keymap.set("n", "<Leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
-		vim.keymap.set("n", "<Leader>lr", ":LspRestart<CR>", { silent = true })
-		vim.keymap.set("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename" })
-		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to definition" })
-		vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Go to implementation" })
-		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "Show references" })
-		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+		-- Copilot ghost text; <Tab> accepts it (see blink.lua)
+		vim.lsp.inline_completion.enable(true)
 
-		-- Diagnostic configuration
+		-- Keymaps (see also the defaults: grn, gra, grt, grx, gO, K, <C-w>d)
+		vim.keymap.set("n", "<Leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+		vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+		vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
+		vim.keymap.set("n", "<Leader>lr", "<cmd>lsp restart<CR>", { desc = "Restart LSP", silent = true })
+		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to definition" })
+		vim.keymap.set("n", "gri", "<cmd>Telescope lsp_implementations<CR>", { desc = "Go to implementation" })
+		vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references<CR>", { desc = "Show references" })
+
 		vim.diagnostic.config({
 			virtual_text = false,
 			float = {
 				source = true,
 			},
-		})
-
-		-- Sign configuration
-		vim.diagnostic.config({
 			signs = {
 				text = {
 					[vim.diagnostic.severity.ERROR] = "",
@@ -169,12 +134,6 @@ return {
 					[vim.diagnostic.severity.INFO] = "",
 					[vim.diagnostic.severity.HINT] = "",
 				},
-				-- values = {
-				-- 	{ name = "DiagnosticSignError", text = "", texthl = "DiagnosticSignError" },
-				-- 	{ name = "DiagnosticSignWarn", text = "", texthl = "DiagnosticSignWarn" },
-				-- 	{ name = "DiagnosticSignInfo", text = "", texthl = "DiagnosticSignInfo" },
-				-- 	{ name = "DiagnosticSignHint", text = "", texthl = "DiagnosticSignHint" },
-				-- },
 			},
 		})
 	end,

@@ -22,4 +22,12 @@ require("lazy").setup("user.plugins", {
 	install = { colorscheme = { "tokyonight", "habamax" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true, notify = false },
+	change_detection = { notify = false },
+	-- no plugin here needs luarocks
+	rocks = { enabled = false },
+	performance = {
+		rtp = {
+			disabled_plugins = { "gzip", "netrwPlugin", "tarPlugin", "tohtml", "tutor", "zipPlugin" },
+		},
+	},
 })

@@ -1,7 +1,7 @@
 -- Use Neovim's native commenting (gc) with treesitter-aware commentstring
 return {
   'JoosepAlviste/nvim-ts-context-commentstring',
-  lazy = true,
+  event = 'VeryLazy',
   init = function()
     -- Skip backward-compat module to avoid deprecation warning
     vim.g.skip_ts_context_commentstring_module = true
@@ -13,16 +13,9 @@ return {
       languages = {
         php_only = '// %s',
         php = '// %s',
+        -- the blade grammar inherits html, so this covers the markup parts
+        blade = '{{-- %s --}}',
       },
-      custom_calculation = function(node, language_tree)
-        if vim.bo.filetype == 'blade' then
-          if language_tree._lang == 'html' then
-            return '{{-- %s --}}'
-          else
-            return '// %s'
-          end
-        end
-      end,
     })
 
     -- Integrate with Neovim's native gc commenting

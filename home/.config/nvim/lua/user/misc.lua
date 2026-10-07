@@ -11,7 +11,18 @@ vim.api.nvim_create_autocmd('textyankpost', {
   desc = 'highlight when yanking text',
   group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
   callback = function()
-    vim.highlight.on_yank({ timeout = 100 })
+    vim.hl.on_yank({ timeout = 100 })
+  end,
+})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'cd to the git root once on startup',
+  group = vim.api.nvim_create_augroup('git-root-cwd', { clear = true }),
+  callback = function()
+    local root = vim.fs.root(vim.fn.expand('%:p:h'), '.git') or vim.fs.root(vim.fn.getcwd(), '.git')
+    if root then
+      vim.fn.chdir(root)
+    end
   end,
 })
 

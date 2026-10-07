@@ -14,3 +14,28 @@ vim.api.nvim_create_autocmd('textyankpost', {
     vim.highlight.on_yank({ timeout = 100 })
   end,
 })
+
+local transparent_groups = {
+  'Normal', 'NormalNC', 'NormalFloat', 'FloatBorder', 'FloatTitle',
+  'SignColumn', 'FoldColumn', 'LineNr', 'CursorLineNr', 'EndOfBuffer',
+  'WinSeparator', 'VertSplit', 'MsgArea',
+  'TelescopeNormal', 'TelescopeBorder', 'TelescopePromptNormal', 'TelescopePromptBorder',
+  'TelescopeResultsNormal', 'TelescopeResultsBorder', 'TelescopePreviewNormal', 'TelescopePreviewBorder',
+  'WhichKeyNormal', 'WhichKeyFloat',
+  'GitSignsAdd', 'GitSignsChange', 'GitSignsDelete',
+  'DiagnosticSignError', 'DiagnosticSignWarn', 'DiagnosticSignInfo', 'DiagnosticSignHint',
+}
+
+local function clear_backgrounds()
+  for _, group in ipairs(transparent_groups) do
+    local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
+    hl.bg, hl.ctermbg = nil, nil
+    vim.api.nvim_set_hl(0, group, hl)
+  end
+end
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  desc = 'make background transparent regardless of colorscheme',
+  group = vim.api.nvim_create_augroup('transparent-background', { clear = true }),
+  callback = clear_backgrounds,
+})

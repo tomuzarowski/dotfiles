@@ -106,6 +106,7 @@ return {
 				"prettier",
 				"stylua",
 				"pint",
+				"blade-formatter",
 			},
 		})
 

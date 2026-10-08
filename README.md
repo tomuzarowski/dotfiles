@@ -77,6 +77,14 @@ Located in `home/.config/ghostty/` - Configuration for the [Ghostty](https://gho
 Ghostty loads this file via the XDG configuration path:
 `~/.config/ghostty/config.ghostty`
 
+### Warp
+
+Located in `home/.warp/` - Configuration for the [Warp](https://www.warp.dev) terminal:
+- `settings.toml` - Appearance, input and agent settings
+- `themes/` - Custom Catppuccin themes
+
+Stow links the whole directory as `~/.warp`, so settings changed in Warp's UI are written straight into this repository.
+
 ## Installation
 
 1. Clone the repository:
@@ -107,6 +115,7 @@ This will install Homebrew and [GNU Stow](https://www.gnu.org/software/stow/) if
 - [AeroSpace](https://nikitabobko.github.io/AeroSpace/)
 - [opencode](https://opencode.ai)
 - [Ghostty](https://ghostty.org)
+- [Warp](https://www.warp.dev)
 - Git
 
 ## License

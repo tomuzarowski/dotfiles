@@ -6,7 +6,13 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
 	keys = {
-		{ "<C-p>", "<cmd>Telescope find_files<CR>", desc = "Find files in cwd" },
+		{
+			"<C-p>",
+			function()
+				require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
+			end,
+			desc = "Find files, including hidden and ignored",
+		},
 		{ "<C-b>", "<cmd>Telescope buffers<CR>", desc = "Show open buffers in cwd" },
 		{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Show open buffers in cwd" },
 		{ "<leader>fc", "<cmd>Telescope grep_string<CR>", desc = "Find string under cursor in cwd" },

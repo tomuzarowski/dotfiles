@@ -99,6 +99,7 @@ cd ~/.dotfiles
 ```
 
 This will install Homebrew and [GNU Stow](https://www.gnu.org/software/stow/) if needed, then create symlinks from `home/.config/` into `~/.config/` via Stow.
+Top-level directories such as `~/.warp` are linked as a whole; if one already exists as a real directory, it is moved to `~/.warp.backup-<timestamp>` first.
 
 3. Install tmux plugins:
    - Press `Ctrl+a` then `I` (capital i) in tmux to install TPM plugins

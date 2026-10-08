@@ -19,6 +19,7 @@ warn()    { echo "${C_YELLOW}==>${C_RESET} $*"; }
 installed_brew=0
 installed_stow=0
 removed_links=()
+backed_up_dirs=()
 stowed_packages=()
 
 info "Dotfiles installer"
@@ -50,6 +51,25 @@ if [ -d "$DOTFILES_DIR/home/.config" ]; then
   done
 fi
 
+# Top-level directories outside .config (e.g. ~/.warp) are linked as a whole,
+# so back up real directories that apps created before the first install
+for path in "$DOTFILES_DIR"/home/.[!.]*/; do
+  [ -d "$path" ] || continue
+  name=$(basename "$path")
+  [ "$name" = ".config" ] && continue
+  target="$HOME/$name"
+  if [ -L "$target" ]; then
+    warn "Removing old symlink: $target"
+    rm "$target"
+    removed_links+=("$name")
+  elif [ -d "$target" ]; then
+    backup="$target.backup-$(date +%Y%m%d%H%M%S)"
+    warn "Backing up existing directory: $target -> $backup"
+    mv "$target" "$backup"
+    backed_up_dirs+=("$name")
+  fi
+done
+
 info "Creating symlinks with GNU Stow..."
 cd "$DOTFILES_DIR"
 stow -t ~ home
@@ -63,4 +83,5 @@ success "Done!"
 echo "    Homebrew:      $([ $installed_brew -eq 1 ] && echo 'installed' || echo 'already present')"
 echo "    GNU Stow:      $([ $installed_stow -eq 1 ] && echo 'installed' || echo 'already present')"
 echo "    Removed links: ${#removed_links[@]}${removed_links:+ (${removed_links[*]})}"
+echo "    Backed up:     ${#backed_up_dirs[@]}${backed_up_dirs:+ (${backed_up_dirs[*]})}"
 echo "    Stowed:        ${#stowed_packages[@]} (${stowed_packages[*]})"

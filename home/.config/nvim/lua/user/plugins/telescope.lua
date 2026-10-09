@@ -9,9 +9,9 @@ return {
 		{
 			"<C-p>",
 			function()
-				require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
+				require("telescope.builtin").find_files({ hidden = true })
 			end,
-			desc = "Find files, including hidden and ignored",
+			desc = "Find files, including hidden",
 		},
 		{ "<C-b>", "<cmd>Telescope buffers<CR>", desc = "Show open buffers in cwd" },
 		{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Show open buffers in cwd" },

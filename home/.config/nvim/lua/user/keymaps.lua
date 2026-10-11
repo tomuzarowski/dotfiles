@@ -19,6 +19,10 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 -- Paste replace visual selection without copying it.
 vim.keymap.set("v", "p", '"_dP')
 
+-- Move selected lines down/up and reindent them.
+vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move lines down" })
+vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move lines up" })
+
 -- Disable annoying command line thing.
 vim.keymap.set("n", "q:", ":q<CR>")
 

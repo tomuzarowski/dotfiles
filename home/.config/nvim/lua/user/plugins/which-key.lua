@@ -5,6 +5,7 @@ return {
     spec = {
       { "<leader>c", group = "code" },
       { "<leader>f", group = "find" },
+      { "<leader>g", group = "git" },
       { "<leader>l", group = "lsp" },
       { "<leader>n", group = "neogit" },
       { "<leader>p", group = "phpactor" },

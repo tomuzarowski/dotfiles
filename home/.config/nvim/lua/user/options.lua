@@ -44,6 +44,7 @@ vim.opt.ttimeoutlen = 10  -- Shorter wait after <Esc> for a possible key sequenc
 vim.opt.cursorline = true
 
 vim.opt.scrolloff = 2
+vim.opt.sidescrolloff = 8
 
 vim.opt.winborder = 'rounded'
 

@@ -10,6 +10,7 @@ return {
       { "<leader>n", group = "neogit" },
       { "<leader>p", group = "phpactor" },
       { "<leader>r", group = "rename" },
+      { "<leader>u", group = "toggle" },
       { "<leader>v", group = "split" },
     },
   },

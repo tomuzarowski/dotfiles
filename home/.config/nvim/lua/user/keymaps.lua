@@ -9,15 +9,16 @@ vim.keymap.set("n", "<leader>w", "<cmd>update<CR>", { desc = "Save file" })
 
 -- Maintain the cursor position when yanking a visual selection.
 -- http://ddrscott.github.io/blog/2016/yank-without-jank/
-vim.keymap.set("v", "y", "myy`y")
-vim.keymap.set("v", "Y", "myY`y")
+-- Visual mode only ("x", not "v"), so typing into a snippet placeholder in select mode is not hijacked.
+vim.keymap.set("x", "y", "myy`y")
+vim.keymap.set("x", "Y", "myY`y")
 
 -- When text is wrapped, move by terminal rows, not lines, unless a count is provided.
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- Paste replace visual selection without copying it.
-vim.keymap.set("v", "p", '"_dP')
+-- Paste replace visual selection without copying it (native v_P, also correct at the end of a line).
+vim.keymap.set("x", "p", "P")
 
 -- Move selected lines down/up and reindent them.
 vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move lines down" })

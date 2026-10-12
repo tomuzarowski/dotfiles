@@ -2,6 +2,8 @@ return {
   'saghen/blink.cmp',
   version = '1.*',
   event = { 'InsertEnter', 'CmdlineEnter' },
+  -- snippets for the 'snippets' source
+  dependencies = { 'rafamadriz/friendly-snippets' },
   opts = {
     keymap = {
       preset = 'enter',

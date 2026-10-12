@@ -12,7 +12,6 @@ return {
       { "<leader>r", group = "rename" },
       { "<leader>u", group = "toggle" },
       { "<leader>v", group = "split" },
-      { "<leader>x", group = "lists" },
     },
   },
   keys = {

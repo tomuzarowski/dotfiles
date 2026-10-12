@@ -136,6 +136,15 @@ return {
 
 		vim.diagnostic.config({
 			virtual_text = false,
+			severity_sort = true,
+			-- ]d and [d show the message right away
+			jump = {
+				on_jump = function(diagnostic, bufnr)
+					if diagnostic then
+						vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+					end
+				end,
+			},
 			float = {
 				source = true,
 			},

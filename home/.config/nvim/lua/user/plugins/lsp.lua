@@ -7,6 +7,8 @@ return {
 		"mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"b0o/schemastore.nvim",
+		-- loads first, so its completion capabilities reach every server (see blink.cmp/plugin/blink-cmp.lua)
+		"saghen/blink.cmp",
 	},
 	config = function()
 		-- PHP

@@ -29,6 +29,26 @@ return {
         vim.keymap.set({ 'x', 'o' }, 'aa', function()
           select.select_textobject('@parameter.outer', 'textobjects')
         end)
+        vim.keymap.set({ 'x', 'o' }, 'ic', function()
+          select.select_textobject('@class.inner', 'textobjects')
+        end)
+        vim.keymap.set({ 'x', 'o' }, 'ac', function()
+          select.select_textobject('@class.outer', 'textobjects')
+        end)
+
+        local move = require('nvim-treesitter-textobjects.move')
+        vim.keymap.set({ 'n', 'x', 'o' }, ']m', function()
+          move.goto_next_start('@function.outer', 'textobjects')
+        end, { desc = 'Next function' })
+        vim.keymap.set({ 'n', 'x', 'o' }, '[m', function()
+          move.goto_previous_start('@function.outer', 'textobjects')
+        end, { desc = 'Previous function' })
+        vim.keymap.set({ 'n', 'x', 'o' }, ']]', function()
+          move.goto_next_start('@class.outer', 'textobjects')
+        end, { desc = 'Next class' })
+        vim.keymap.set({ 'n', 'x', 'o' }, '[[', function()
+          move.goto_previous_start('@class.outer', 'textobjects')
+        end, { desc = 'Previous class' })
       end,
     },
   },

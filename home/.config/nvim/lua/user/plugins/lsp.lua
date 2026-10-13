@@ -14,6 +14,10 @@ return {
 		-- PHP
 		local licence_file = vim.fn.expand("~/intelephense/licence.txt")
 		vim.lsp.config("intelephense", {
+			filetypes = { "php", "blade" },
+			get_language_id = function(_, filetype)
+				return filetype == "blade" and "php" or filetype
+			end,
 			init_options = {
 				licenceKey = vim.fn.filereadable(licence_file) == 1 and vim.fn.readfile(licence_file)[1] or nil,
 			},
@@ -130,9 +134,44 @@ return {
 		vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 		vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
 		vim.keymap.set("n", "<Leader>lr", "<cmd>lsp restart<CR>", { desc = "Restart LSP", silent = true })
-		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to definition" })
-		vim.keymap.set("n", "gri", "<cmd>Telescope lsp_implementations<CR>", { desc = "Go to implementation" })
-		vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references<CR>", { desc = "Show references" })
+		local navigation_maps = {
+			{ "gd", "textDocument/definition", "lsp_definitions", "Go to definition" },
+			{ "gri", "textDocument/implementation", "lsp_implementations", "Go to implementation" },
+			{ "grr", "textDocument/references", "lsp_references", "Show references" },
+		}
+		vim.api.nvim_create_autocmd("LspAttach", {
+			callback = function(args)
+				local client = vim.lsp.get_client_by_id(args.data.client_id)
+				for _, map in ipairs(navigation_maps) do
+					if client:supports_method(map[2], args.buf) then
+						vim.keymap.set("n", map[1], "<cmd>Telescope " .. map[3] .. "<CR>", {
+							buffer = args.buf,
+							desc = map[4],
+						})
+					end
+				end
+			end,
+		})
+		vim.api.nvim_create_autocmd("LspDetach", {
+			callback = function(args)
+				vim.schedule(function()
+					if not vim.api.nvim_buf_is_valid(args.buf) then
+						return
+					end
+					for _, map in ipairs(navigation_maps) do
+						if #vim.lsp.get_clients({ bufnr = args.buf, method = map[2] }) == 0 then
+							local mapping = vim.api.nvim_buf_get_keymap(args.buf, "n")
+							for _, item in ipairs(mapping) do
+								if item.lhs == map[1] and item.rhs and item.rhs:lower() == ("<cmd>Telescope " .. map[3] .. "<CR>"):lower() then
+									vim.keymap.del("n", map[1], { buffer = args.buf })
+									break
+								end
+							end
+						end
+					end
+				end)
+			end,
+		})
 
 		vim.diagnostic.config({
 			virtual_text = false,

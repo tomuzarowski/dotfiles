@@ -2,7 +2,18 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Close all open buffers.
-vim.keymap.set("n", "<leader>q", "<cmd>%bdelete<CR>", { desc = "Delete all buffers" })
+vim.keymap.set("n", "<leader>qa", "<cmd>%bdelete<CR>", { desc = "Delete all buffers" })
+
+-- Close current buffer and its window (without quitting Neovim).
+vim.keymap.set("n", "<leader>qf", function()
+  local buf = vim.api.nvim_get_current_buf()
+  if vim.fn.winnr("$") > 1 then
+    vim.cmd("close")
+  end
+  if vim.api.nvim_buf_is_loaded(buf) then
+    vim.cmd("bdelete " .. buf)
+  end
+end, { desc = "Delete current buffer" })
 
 -- Save file.
 vim.keymap.set("n", "<leader>w", "<cmd>update<CR>", { desc = "Save file" })

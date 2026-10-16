@@ -8,7 +8,6 @@ return {
       { "<leader>g", group = "git" },
       { "<leader>l", group = "lsp" },
       { "<leader>n", group = "neogit" },
-      { "<leader>p", group = "phpactor" },
       { "<leader>q", group = "quit" },
       { "<leader>r", group = "rename" },
       { "<leader>u", group = "toggle" },

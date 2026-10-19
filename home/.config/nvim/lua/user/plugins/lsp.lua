@@ -161,7 +161,7 @@ return {
 		end, { desc = "Toggle inlay hints" })
 
 		-- Copilot ghost text; <Tab> accepts it (see blink.lua)
-		vim.lsp.inline_completion.enable(true)
+		vim.lsp.inline_completion.enable(false)
 		vim.keymap.set("n", "<Leader>uc", function()
 			local enabled = not vim.lsp.inline_completion.is_enabled()
 			vim.lsp.inline_completion.enable(enabled)

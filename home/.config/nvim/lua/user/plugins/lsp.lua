@@ -51,6 +51,14 @@ return {
 
 		vim.lsp.config("ts_ls", {
 			init_options = {
+				preferences = {
+					includeInlayParameterNameHints = "all",
+					includeInlayFunctionParameterTypeHints = true,
+					includeInlayVariableTypeHints = true,
+					includeInlayPropertyDeclarationTypeHints = true,
+					includeInlayFunctionLikeReturnTypeHints = true,
+					includeInlayEnumMemberValueHints = true,
+				},
 				plugins = {
 					{
 						name = "@vue/typescript-plugin",
@@ -69,6 +77,37 @@ return {
 				"typescriptreact",
 				"typescript.tsx",
 				"vue",
+			},
+		})
+
+		-- Svelte uses VS Code-style settings for its JavaScript and TypeScript hints.
+		local script_inlay_hints = {
+			parameterNames = { enabled = "all" },
+			parameterTypes = { enabled = true },
+			variableTypes = { enabled = true },
+			propertyDeclarationTypes = { enabled = true },
+			functionLikeReturnTypes = { enabled = true },
+			enumMemberValues = { enabled = true },
+		}
+		vim.lsp.config("svelte", {
+			settings = {
+				javascript = { inlayHints = vim.deepcopy(script_inlay_hints) },
+				typescript = { inlayHints = vim.deepcopy(script_inlay_hints) },
+			},
+		})
+
+		-- Lua
+		vim.lsp.config("lua_ls", {
+			settings = {
+				Lua = {
+					hint = {
+						enable = true,
+						paramName = "All",
+						paramType = true,
+						setType = true,
+						await = true,
+					},
+				},
 			},
 		})
 

@@ -157,7 +157,7 @@ return {
 			},
 		})
 
-		vim.lsp.inlay_hint.enable(true)
+		vim.lsp.inlay_hint.enable(false)
 		vim.keymap.set("n", "<Leader>uh", function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 		end, { desc = "Toggle inlay hints" })

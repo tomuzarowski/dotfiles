@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("user.plugins", {
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
-	install = { colorscheme = { "tokyonight", "habamax" } },
+	install = { colorscheme = { "onedark", "habamax" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true, notify = false },
 	change_detection = { notify = false },

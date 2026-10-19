@@ -46,6 +46,8 @@ return {
 			on_attach = function(client)
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentRangeFormattingProvider = false
+				-- ts_ls provides the hints; vue_ls's empty reply can arrive first and stop them from drawing after a toggle
+				client.server_capabilities.inlayHintProvider = false
 			end,
 		})
 

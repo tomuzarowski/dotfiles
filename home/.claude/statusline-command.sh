@@ -13,17 +13,16 @@ eval "$(echo "$input" | jq -r '
 [ "$pct" -gt 100 ] && pct=100
 [ "$pct" -lt 0 ] && pct=0
 
-# Line 1: model with reasoning effort, folder, git branch
 [ -n "$effort" ] && model="$model · $effort"
+
+# Git branch of the current directory
 branch=""
 if [ -n "$dir" ] && git -C "$dir" rev-parse --git-dir >/dev/null 2>&1; then
   branch=$(git -C "$dir" --no-optional-locks branch --show-current 2>/dev/null)
   [ -z "$branch" ] && branch=$(git -C "$dir" --no-optional-locks rev-parse --short HEAD 2>/dev/null)
 fi
-line1=$(printf '\033[36m[%s]\033[0m 📁 %s' "$model" "${dir##*/}")
-[ -n "$branch" ] && line1="$line1 | 🌿 $branch"
 
-# Line 2: solid bar with 1/8-cell resolution, percent, cost, duration
+# Context bar with 1/8-cell resolution
 fill_rgb='92;184;92'
 empty_rgb='38;77;42'
 partials=(' ' '▏' '▎' '▍' '▌' '▋' '▊' '▉')
@@ -44,6 +43,10 @@ if [ "$empty" -gt 0 ]; then
   bar+=$(printf '%*s' "$empty" "")
 fi
 bar+=$'\033[0m'
+
+# Single line: model, context, cost, duration, folder, git branch
 secs=$((ms / 1000))
-printf '%s\n' "$line1"
-printf '%s %s%% | \033[33m$%.2f\033[0m | ⏱️ %dm %ds\n' "$bar" "$pct" "$cost" $((secs / 60)) $((secs % 60))
+line=$(printf '\033[36m[%s]\033[0m %s %s%% | \033[33m$%.2f\033[0m | ⏱️ %dm %ds | 📁 %s' \
+  "$model" "$bar" "$pct" "$cost" $((secs / 60)) $((secs % 60)) "${dir##*/}")
+[ -n "$branch" ] && line="$line | 🌿 $branch"
+printf '%s\n' "$line"

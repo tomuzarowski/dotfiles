@@ -23,8 +23,8 @@ if [ -n "$dir" ] && git -C "$dir" rev-parse --git-dir >/dev/null 2>&1; then
 fi
 
 # Context bar with 1/8-cell resolution
-fill_rgb='92;184;92'
-empty_rgb='38;77;42'
+fill_rgb='153;153;153'
+empty_rgb='74;74;74'
 partials=(' ' '▏' '▎' '▍' '▌' '▋' '▊' '▉')
 units=$(( (pct * 80 + 50) / 100 ))
 full=$((units / 8))
@@ -46,7 +46,7 @@ bar+=$'\033[0m'
 
 # Single line: model, context, cost, duration, folder, git branch
 secs=$((ms / 1000))
-line=$(printf '\033[36m[%s]\033[0m %s %s%% | \033[33m$%.2f\033[0m | ⏱️ %dm %ds | 📁 %s' \
+line=$(printf '[%s] %s %s%% | $%.2f | ⏱️ %dm %ds | 📁 %s' \
   "$model" "$bar" "$pct" "$cost" $((secs / 60)) $((secs % 60)) "${dir##*/}")
 [ -n "$branch" ] && line="$line | 🌿 $branch"
 printf '%s\n' "$line"

@@ -44,8 +44,9 @@ if ! command -v jq &>/dev/null; then
   installed_jq=1
 fi
 
-# Strip the machine-specific autoMode block from Claude Code settings on commit
-git -C "$DOTFILES_DIR" config filter.claude-settings.clean "jq 'del(.autoMode)'"
+# Strip the machine-specific autoMode block from Claude Code settings on commit,
+# and sort keys because Claude Code reorders them when it saves settings
+git -C "$DOTFILES_DIR" config filter.claude-settings.clean "jq -S 'del(.autoMode)'"
 git -C "$DOTFILES_DIR" config filter.claude-settings.smudge cat
 git -C "$DOTFILES_DIR" config filter.claude-settings.required true
 

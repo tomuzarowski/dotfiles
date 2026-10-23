@@ -95,7 +95,7 @@ Located in `home/.claude/` - Configuration for [Claude Code](https://code.claude
 
 `~/.claude` also holds Claude Code's history, sessions and caches, so it stays a real directory and Stow links only the entries above.
 
-The `autoMode` block in `settings.json` describes private projects, so a git clean filter (`.gitattributes`) strips it from commits while keeping it in the local file. `install.sh` configures the filter; run it on a new machine before committing.
+The `autoMode` block in `settings.json` describes private projects, so a git clean filter (`.gitattributes`) strips it from commits while keeping it in the local file. The filter also sorts keys, since Claude Code reorders them when it saves settings. `install.sh` configures the filter; run it on a new machine before committing.
 
 ## Installation
 

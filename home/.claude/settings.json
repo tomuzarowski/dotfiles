@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__pencil"
+    ]
+  },
+  "model": "opus",
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true
+  },
+  "language": "Polish",
+  "feedbackDrafts": "off",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "theme": "dark",
+  "autoContinueAtUsageLimit": true,
+  "env": {
+    "DISABLE_AUTOUPDATER": "1"
+  }
+}

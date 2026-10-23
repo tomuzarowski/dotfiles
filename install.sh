@@ -18,6 +18,7 @@ warn()    { echo "${C_YELLOW}==>${C_RESET} $*"; }
 
 installed_brew=0
 installed_stow=0
+installed_jq=0
 removed_links=()
 backed_up_dirs=()
 stowed_packages=()
@@ -36,6 +37,17 @@ if ! command -v stow &>/dev/null; then
   brew install stow
   installed_stow=1
 fi
+
+if ! command -v jq &>/dev/null; then
+  info "Installing jq..."
+  brew install jq
+  installed_jq=1
+fi
+
+# Strip the machine-specific autoMode block from Claude Code settings on commit
+git -C "$DOTFILES_DIR" config filter.claude-settings.clean "jq 'del(.autoMode)'"
+git -C "$DOTFILES_DIR" config filter.claude-settings.smudge cat
+git -C "$DOTFILES_DIR" config filter.claude-settings.required true
 
 # Remove existing symlinks for any package we're about to stow
 if [ -d "$DOTFILES_DIR/home/.config" ]; then
@@ -57,6 +69,8 @@ for path in "$DOTFILES_DIR"/home/.[!.]*/; do
   [ -d "$path" ] || continue
   name=$(basename "$path")
   [ "$name" = ".config" ] && continue
+  # ~/.claude also holds Claude Code's runtime data, so only its files are linked
+  [ "$name" = ".claude" ] && continue
   target="$HOME/$name"
   if [ -L "$target" ]; then
     warn "Removing old symlink: $target"
@@ -70,6 +84,24 @@ for path in "$DOTFILES_DIR"/home/.[!.]*/; do
   fi
 done
 
+# Keep ~/.claude and its skills directory real so Stow links individual entries,
+# and back up files Claude Code created before the first install
+if [ -d "$DOTFILES_DIR/home/.claude" ]; then
+  mkdir -p "$HOME/.claude/skills"
+  for path in "$DOTFILES_DIR"/home/.claude/* "$DOTFILES_DIR"/home/.claude/skills/*; do
+    [ -e "$path" ] || continue
+    rel=${path#"$DOTFILES_DIR/home/"}
+    [ "$rel" = ".claude/skills" ] && continue
+    target="$HOME/$rel"
+    if [ -e "$target" ] && [ ! -L "$target" ]; then
+      backup="$target.backup-$(date +%Y%m%d%H%M%S)"
+      warn "Backing up existing file: $target -> $backup"
+      mv "$target" "$backup"
+      backed_up_dirs+=("$rel")
+    fi
+  done
+fi
+
 info "Creating symlinks with GNU Stow..."
 cd "$DOTFILES_DIR"
 stow -t ~ home
@@ -82,6 +114,7 @@ echo
 success "Done!"
 echo "    Homebrew:      $([ $installed_brew -eq 1 ] && echo 'installed' || echo 'already present')"
 echo "    GNU Stow:      $([ $installed_stow -eq 1 ] && echo 'installed' || echo 'already present')"
+echo "    jq:            $([ $installed_jq -eq 1 ] && echo 'installed' || echo 'already present')"
 echo "    Removed links: ${#removed_links[@]}${removed_links:+ (${removed_links[*]})}"
 echo "    Backed up:     ${#backed_up_dirs[@]}${backed_up_dirs:+ (${backed_up_dirs[*]})}"
 echo "    Stowed:        ${#stowed_packages[@]} (${stowed_packages[*]})"

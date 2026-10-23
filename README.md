@@ -11,6 +11,7 @@ This repository contains configurations for:
 - **AeroSpace** - macOS tiling window manager
 - **opencode** - AI coding assistant configuration
 - **Ghostty** - Terminal emulator configuration
+- **Claude Code** - AI coding assistant settings, status line and skills
 
 ## Components
 
@@ -85,6 +86,17 @@ Located in `home/.warp/` - Configuration for the [Warp](https://www.warp.dev) te
 
 Stow links the whole directory as `~/.warp`, so settings changed in Warp's UI are written straight into this repository.
 
+### Claude Code
+
+Located in `home/.claude/` - Configuration for [Claude Code](https://code.claude.com):
+- `settings.json` - Model, language, permissions, plugins and status line settings
+- `statusline-command.sh` - Status line with model, folder, git branch, context usage, cost and duration
+- `skills/` - Personal skills (`find-docs`, `deploying-to-cloud`)
+
+`~/.claude` also holds Claude Code's history, sessions and caches, so it stays a real directory and Stow links only the entries above.
+
+The `autoMode` block in `settings.json` describes private projects, so a git clean filter (`.gitattributes`) strips it from commits while keeping it in the local file. `install.sh` configures the filter; run it on a new machine before committing.
+
 ## Installation
 
 1. Clone the repository:
@@ -98,8 +110,9 @@ cd ~/.dotfiles
 ./install.sh
 ```
 
-This will install Homebrew and [GNU Stow](https://www.gnu.org/software/stow/) if needed, then create symlinks from `home/.config/` into `~/.config/` via Stow.
+This will install Homebrew, [GNU Stow](https://www.gnu.org/software/stow/) and [jq](https://jqlang.org) if needed, then create symlinks from `home/.config/` into `~/.config/` via Stow.
 Top-level directories such as `~/.warp` are linked as a whole; if one already exists as a real directory, it is moved to `~/.warp.backup-<timestamp>` first.
+Entries in `~/.claude` are linked one by one; existing files are moved to `<name>.backup-<timestamp>` first.
 
 3. Install tmux plugins:
    - Press `Ctrl+a` then `I` (capital i) in tmux to install TPM plugins
@@ -117,6 +130,8 @@ Top-level directories such as `~/.warp` are linked as a whole; if one already ex
 - [opencode](https://opencode.ai)
 - [Ghostty](https://ghostty.org)
 - [Warp](https://www.warp.dev)
+- [Claude Code](https://code.claude.com)
+- [jq](https://jqlang.org)
 - Git
 
 ## License

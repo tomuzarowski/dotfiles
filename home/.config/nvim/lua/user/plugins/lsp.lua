@@ -157,18 +157,9 @@ return {
 			},
 		})
 
+		-- Off until toggled with <Leader>uh / <Leader>uc (see snacks.lua)
 		vim.lsp.inlay_hint.enable(false)
-		vim.keymap.set("n", "<Leader>uh", function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-		end, { desc = "Toggle inlay hints" })
-
-		-- Copilot ghost text; <Tab> accepts it (see blink.lua)
 		vim.lsp.inline_completion.enable(false)
-		vim.keymap.set("n", "<Leader>uc", function()
-			local enabled = not vim.lsp.inline_completion.is_enabled()
-			vim.lsp.inline_completion.enable(enabled)
-			vim.notify("Copilot suggestions " .. (enabled and "on" or "off"))
-		end, { desc = "Toggle Copilot suggestions" })
 
 		-- Keymaps (see also the defaults: grn, gra, grt, grx, gO, K, <C-w>d)
 		vim.keymap.set("n", "<Leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic" })

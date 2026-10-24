@@ -2,6 +2,8 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
+    -- vertical popup with a border in the bottom-right corner
+    preset = "helix",
     spec = {
       { "<leader>c", group = "code" },
       { "<leader>f", group = "find" },

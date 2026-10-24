@@ -64,27 +64,6 @@ if [ -d "$DOTFILES_DIR/home/.config" ]; then
   done
 fi
 
-# Top-level directories outside .config (e.g. ~/.warp) are linked as a whole,
-# so back up real directories that apps created before the first install
-for path in "$DOTFILES_DIR"/home/.[!.]*/; do
-  [ -d "$path" ] || continue
-  name=$(basename "$path")
-  [ "$name" = ".config" ] && continue
-  # ~/.claude also holds Claude Code's runtime data, so only its files are linked
-  [ "$name" = ".claude" ] && continue
-  target="$HOME/$name"
-  if [ -L "$target" ]; then
-    warn "Removing old symlink: $target"
-    rm "$target"
-    removed_links+=("$name")
-  elif [ -d "$target" ]; then
-    backup="$target.backup-$(date +%Y%m%d%H%M%S)"
-    warn "Backing up existing directory: $target -> $backup"
-    mv "$target" "$backup"
-    backed_up_dirs+=("$name")
-  fi
-done
-
 # Keep ~/.claude and its skills directory real so Stow links individual entries,
 # and back up files Claude Code created before the first install
 if [ -d "$DOTFILES_DIR/home/.claude" ]; then

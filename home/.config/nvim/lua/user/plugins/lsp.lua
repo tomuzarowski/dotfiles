@@ -207,15 +207,10 @@ return {
 
 		vim.diagnostic.config({
 			virtual_text = false,
+			-- Show the message inline, but only for the line under the cursor (]d and [d land on it);
+			-- <Leader>d opens the full message in a float.
+			virtual_lines = { current_line = true },
 			severity_sort = true,
-			-- ]d and [d show the message right away
-			jump = {
-				on_jump = function(diagnostic, bufnr)
-					if diagnostic then
-						vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
-					end
-				end,
-			},
 			float = {
 				source = true,
 			},

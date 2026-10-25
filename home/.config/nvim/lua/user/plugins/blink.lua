@@ -17,6 +17,7 @@ return {
     completion = {
       list = { selection = { preselect = false } },
       documentation = { auto_show = true },
+      menu = { draw = { treesitter = { 'lsp' } } },
     },
     signature = { enabled = true },
     sources = {

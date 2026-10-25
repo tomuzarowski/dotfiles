@@ -7,6 +7,16 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  desc = 'no showbreak in floats (hover, diagnostics, completion docs)',
+  group = vim.api.nvim_create_augroup('float-showbreak', { clear = true }),
+  callback = function()
+    if vim.api.nvim_win_get_config(0).relative ~= '' then
+      vim.opt_local.showbreak = 'NONE'
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd('textyankpost', {
   desc = 'highlight when yanking text',
   group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),

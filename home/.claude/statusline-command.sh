@@ -48,5 +48,5 @@ bar+=$'\033[0m'
 secs=$((ms / 1000))
 line=$(printf '[%s] %s %s%% | $%.2f | ⏱️ %dm %ds | 📁 %s' \
   "$model" "$bar" "$pct" "$cost" $((secs / 60)) $((secs % 60)) "${dir##*/}")
-[ -n "$branch" ] && line="$line | 🌿 $branch"
+[ -n "$branch" ] && line="$line (🌿 $branch)"
 printf '%s\n' "$line"

@@ -5,6 +5,24 @@ return {
 	priority = 1000,
 	opts = {
 		notifier = { enabled = true },
+		-- Animated scrolling instead of jumping half a screen at a time.
+		scroll = { enabled = true },
+		-- Indent guides with an animated, underlined current scope. Replaces indent-blankline.nvim.
+		indent = {
+			enabled = true,
+			indent = { char = "┊" },
+			scope = { underline = true },
+			animate = { duration = { step = 12, total = 250 } },
+		},
+		-- Line numbers, git signs, diagnostics and folds in a single column.
+		statuscolumn = { enabled = true },
+		-- Rounded floating prompt for vim.ui.input (e.g. LSP rename).
+		input = { enabled = true },
+		-- Highlight references to the symbol under the cursor.
+		words = { enabled = true },
+		-- Keep the UI responsive in huge files.
+		bigfile = { enabled = true },
+		quickfile = { enabled = true },
 	},
 	config = function(_, opts)
 		require("snacks").setup(opts)
@@ -65,5 +83,10 @@ return {
 		Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
 		Snacks.toggle.treesitter():map("<leader>uT")
 		Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+		Snacks.toggle.scroll():map("<leader>uS")
+		Snacks.toggle.indent():map("<leader>uI")
+		Snacks.toggle.dim():map("<leader>uD")
+		Snacks.toggle.zen():map("<leader>uz")
+		Snacks.toggle.zoom():map("<leader>uZ")
 	end,
 }

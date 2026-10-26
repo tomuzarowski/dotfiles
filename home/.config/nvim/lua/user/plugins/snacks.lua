@@ -7,12 +7,12 @@ return {
 		notifier = { enabled = true },
 		-- Animated scrolling instead of jumping half a screen at a time.
 		scroll = { enabled = true },
-		-- Indent guides with an animated, underlined current scope. Replaces indent-blankline.nvim.
+		-- Indent guides with an animated current scope. Replaces indent-blankline.nvim.
 		indent = {
 			enabled = true,
 			indent = { char = "┊" },
-			scope = { underline = true },
-			animate = { duration = { step = 12, total = 250 } },
+			scope = { char = "┊" },
+			animate = { duration = { step = 18, total = 375 } },
 		},
 		-- Line numbers, git signs, diagnostics and folds in a single column.
 		statuscolumn = { enabled = true },

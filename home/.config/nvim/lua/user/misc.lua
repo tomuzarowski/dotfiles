@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd('VimEnter', {
 local transparent_groups = {
   'Normal', 'NormalNC', 'NormalFloat', 'FloatBorder', 'FloatTitle',
   'SignColumn', 'FoldColumn', 'LineNr', 'CursorLineNr', 'EndOfBuffer',
-  'WinSeparator', 'VertSplit', 'MsgArea',
+  'WinSeparator', 'VertSplit', 'MsgArea', 'StatusLine', 'StatusLineNC',
   'TelescopeNormal', 'TelescopeBorder', 'TelescopePromptNormal', 'TelescopePromptBorder',
   'TelescopeResultsNormal', 'TelescopeResultsBorder', 'TelescopePreviewNormal', 'TelescopePreviewBorder',
   'WhichKeyNormal', 'WhichKeyFloat',

@@ -8,9 +8,9 @@ return {
       globalstatus = true,
       theme = {
         normal = {
-          a = 'StatusLine',
-          b = 'StatusLine',
-          c = 'StatusLine',
+          a = { bg = 'NONE' },
+          b = { bg = 'NONE' },
+          c = { bg = 'NONE' },
         },
       },
     },

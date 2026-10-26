@@ -8,9 +8,21 @@ return {
       globalstatus = true,
       theme = {
         normal = {
-          a = { bg = 'NONE' },
+          a = { fg = '#7aa2f7', bg = 'NONE' },
           b = { bg = 'NONE' },
           c = { bg = 'NONE' },
+        },
+        insert = {
+          a = { fg = '#9ece6a', bg = 'NONE' },
+        },
+        visual = {
+          a = { fg = '#bb9af7', bg = 'NONE' },
+        },
+        replace = {
+          a = { fg = '#f7768e', bg = 'NONE' },
+        },
+        command = {
+          a = { fg = '#e0af68', bg = 'NONE' },
         },
       },
     },

@@ -3,7 +3,7 @@ foreground = #c8ccd4
 palette = 7=#c8ccd4
 palette = 15=#d7dae0
 font-family = Cascadia Code NF
-font-size = 20
+font-size = 18
 window-height = 30
 window-width = 160
 window-padding-x = 8

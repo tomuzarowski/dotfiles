@@ -1,8 +1,5 @@
 .DS_Store
 
-# Tmux plugin manager
-home/.config/tmux/plugins/
-
 # Neovim lazy plugin lockfile
 home/.config/nvim/lazy-lock.json
 

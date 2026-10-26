@@ -7,7 +7,6 @@ Personal configuration files for macOS development environment.
 This repository contains configurations for:
 
 - **Neovim** - Modern Vim-based editor with Lua configuration
-- **tmux** - Terminal multiplexer with custom keybindings
 - **AeroSpace** - macOS tiling window manager
 - **opencode** - AI coding assistant configuration
 - **Ghostty** - Terminal emulator configuration
@@ -32,22 +31,6 @@ Located in `home/.config/nvim/` - A fully featured Neovim setup using:
   - Tokyo Night color theme
 
 See `home/.config/nvim/lua/user/plugins/` for the full list of configured plugins.
-
-### tmux
-
-Located in `home/.config/tmux/` - Terminal multiplexer configuration featuring:
-- **Prefix Key**: `Ctrl+a` (instead of default `Ctrl+b`)
-- **Split Bindings**:
-  - `|` - Split horizontally
-  - `-` - Split vertically
-  - Splits open in current working directory
-- **Vim-style navigation** between panes (Ctrl+h/j/k/l)
-- **Plugins** (via TPM):
-  - [tpm](https://github.com/tmux-plugins/tpm) - Plugin manager
-  - [catppuccin/tmux](https://github.com/catppuccin/tmux) - Theme
-  - [tmux-battery](https://github.com/tmux-plugins/tmux-battery) - Battery indicator
-  - [tmux-cpu](https://github.com/tmux-plugins/tmux-cpu) - CPU usage
-  - [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) - Seamless vim/tmux navigation
 
 ### AeroSpace
 
@@ -105,10 +88,7 @@ cd ~/.dotfiles
 This will install Homebrew, [GNU Stow](https://www.gnu.org/software/stow/) and [jq](https://jqlang.org) if needed, then create symlinks from `home/.config/` into `~/.config/` via Stow.
 Entries in `~/.claude` are linked one by one; existing files are moved to `<name>.backup-<timestamp>` first.
 
-3. Install tmux plugins:
-   - Press `Ctrl+a` then `I` (capital i) in tmux to install TPM plugins
-
-4. Install Neovim plugins:
+3. Install Neovim plugins:
    - Launch Neovim, lazy.nvim will automatically install plugins
 
 ## Requirements
@@ -116,7 +96,6 @@ Entries in `~/.claude` are linked one by one; existing files are moved to `<name
 - macOS
 - [Homebrew](https://brew.sh/)
 - [Neovim](https://neovim.io/) (v0.9+)
-- [tmux](https://github.com/tmux/tmux)
 - [AeroSpace](https://nikitabobko.github.io/AeroSpace/)
 - [opencode](https://opencode.ai)
 - [Ghostty](https://ghostty.org)

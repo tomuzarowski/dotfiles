@@ -2,6 +2,8 @@ return {
 	"lewis6991/gitsigns.nvim",
 	event = { "BufReadPost", "BufNewFile" },
 	opts = {
+		-- Keep new, untracked files free of git signs until their first git add.
+		attach_to_untracked = false,
 		on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")
 

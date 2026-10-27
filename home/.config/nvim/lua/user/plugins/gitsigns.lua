@@ -2,9 +2,21 @@ return {
 	"lewis6991/gitsigns.nvim",
 	event = { "BufReadPost", "BufNewFile" },
 	opts = {
-		-- Keep new, untracked files free of git signs until their first git add.
+		-- Untracked files have no useful line-by-line diff yet.
 		attach_to_untracked = false,
 		on_attach = function(bufnr)
+			-- Also skip new files already in the index (including git add -N).
+			-- Only files present in HEAD should show line-by-line changes.
+			local status = vim.b[bufnr].gitsigns_status_dict
+			local root = status and status.root
+			local path = root and vim.fs.relpath(root, vim.api.nvim_buf_get_name(bufnr))
+			if path then
+				local result = vim.system({ "git", "-C", root, "cat-file", "-e", "HEAD:" .. path }):wait()
+				if result.code ~= 0 then
+					return false
+				end
+			end
+
 			local gitsigns = require("gitsigns")
 
 			local function map(mode, lhs, rhs, desc)

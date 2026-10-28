@@ -10,6 +10,9 @@
     "openai/gpt-6-luna"
   ],
   "lastChangelogVersion": "1.4.0",
+  "modelThinkingLevels": {
+    "pi-claude-cli/claude-opus-5-5": "high"
+  },
   "packages": [
     "git:github.com/dmmulroy/pi-claude-cli@af7cfd06258d757bbf9422d70f5232534c81206b",
     "git:github.com/dmmulroy/pi-web-tools@445836dcf4b6df202cd4a45ee641ec12eb86c36d"

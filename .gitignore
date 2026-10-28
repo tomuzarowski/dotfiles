@@ -7,16 +7,3 @@ home/.config/nvim/lazy-lock.json
 home/.config/opencode/node_modules/
 home/.config/opencode/package-lock.json
 home/.config/opencode/bun.lock
-
-# Pi runtime stays in ~/.pi/agent, never in dotfiles.
-home/.pi/**
-!home/.pi/agent/
-!home/.pi/agent/settings.json
-!home/.pi/agent/mcp.json
-!home/.pi/agent/AGENTS.md
-!home/.pi/agent/extensions/
-!home/.pi/agent/extensions/defaults.ts
-!home/.pi/agent/extensions/working-phrases.ts
-!home/.pi/agent/skills/
-!home/.pi/agent/skills/code-review/
-!home/.pi/agent/skills/code-review/SKILL.md

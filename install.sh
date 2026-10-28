@@ -50,42 +50,6 @@ git -C "$DOTFILES_DIR" config filter.claude-settings.clean "jq -S 'del(.autoMode
 git -C "$DOTFILES_DIR" config filter.claude-settings.smudge cat
 git -C "$DOTFILES_DIR" config filter.claude-settings.required true
 
-# Pi creates a machine-specific OpenAI OAuth installation ID in settings.
-git -C "$DOTFILES_DIR" config filter.pi-settings.clean "jq -S 'del(.deviceId)'"
-git -C "$DOTFILES_DIR" config filter.pi-settings.smudge cat
-git -C "$DOTFILES_DIR" config filter.pi-settings.required true
-
-# Pi writes credentials, packages and sessions beside its configuration.
-# Keep these directories real so Stow never sends runtime data into dotfiles.
-if [ -d "$DOTFILES_DIR/home/.pi" ]; then
-  for rel in .pi .pi/agent .pi/agent/extensions .pi/agent/skills; do
-    target="$HOME/$rel"
-    if [ -L "$target" ]; then
-      if [ -e "$target" ]; then
-        warn "Pi directory is already a symlink: $target. Migrate its contents to a real directory before installing."
-        exit 1
-      fi
-      backup="$target.backup-$(date +%Y%m%d%H%M%S)"
-      warn "Backing up dangling symlink: $target -> $backup"
-      mv "$target" "$backup"
-      backed_up_dirs+=("$rel")
-    fi
-    mkdir -p "$target"
-  done
-  for path in "$DOTFILES_DIR"/home/.pi/agent/* "$DOTFILES_DIR"/home/.pi/agent/extensions/* "$DOTFILES_DIR"/home/.pi/agent/skills/*; do
-    [ -e "$path" ] || continue
-    rel=${path#"$DOTFILES_DIR/home/"}
-    case "$rel" in .pi/agent/extensions|.pi/agent/skills) continue ;; esac
-    target="$HOME/$rel"
-    if [ -e "$target" ] && [ ! -L "$target" ]; then
-      backup="$target.backup-$(date +%Y%m%d%H%M%S)"
-      warn "Backing up existing Pi configuration: $target -> $backup"
-      mv "$target" "$backup"
-      backed_up_dirs+=("$rel")
-    fi
-  done
-fi
-
 # Remove existing symlinks for any package we're about to stow
 if [ -d "$DOTFILES_DIR/home/.config" ]; then
   for path in "$DOTFILES_DIR"/home/.config/*/; do

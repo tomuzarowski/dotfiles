@@ -11,7 +11,7 @@
   ],
   "lastChangelogVersion": "1.4.0",
   "modelThinkingLevels": {
-    "pi-claude-cli/claude-opus-5-5": "high"
+    "pi-claude-cli/claude-opus-5-5": "xhigh"
   },
   "packages": [
     "git:github.com/dmmulroy/pi-claude-cli@af7cfd06258d757bbf9422d70f5232534c81206b",

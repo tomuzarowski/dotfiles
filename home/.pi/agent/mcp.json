@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "oauth": {"clientName": "Claude Code"},
+      "exposure": "codemode",
+      "description": "Read Figma frames, components, variables and screenshots to implement designs in code."
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "exposure": "codemode",
+      "description": "Find current, version-specific library documentation and code examples."
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@1.12.0", "--isolated", "--no-usage-statistics", "--no-performance-crux"],
+      "exposure": "codemode",
+      "description": "Inspect pages, console, network, screenshots and performance in a separate Chrome profile."
+    }
+  }
+}

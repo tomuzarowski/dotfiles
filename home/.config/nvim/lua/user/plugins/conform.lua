@@ -16,8 +16,8 @@ return {
 			blade = { "blade-formatter" },
 			css = { "prettier" },
 			html = { "prettier" },
-			javascript = { "prettier" },
-			javascriptreact = { "prettier" },
+			javascript = { "vp_fmt", "prettier", stop_after_first = true },
+			javascriptreact = { "vp_fmt", "prettier", stop_after_first = true },
 			json = { "prettier" },
 			lua = { "stylua" },
 			markdown = { "prettier" },
@@ -25,9 +25,23 @@ return {
 			svelte = { "prettier" },
 			vue = { "prettier" },
 			twig = { "prettier" },
-			typescript = { "prettier" },
-			typescriptreact = { "prettier" },
+			typescript = { "vp_fmt", "prettier", stop_after_first = true },
+			typescriptreact = { "vp_fmt", "prettier", stop_after_first = true },
 			yaml = { "prettier" },
+		},
+		formatters = {
+			-- Vite+ projects keep formatter options in vite.config.ts, which Prettier does not read
+			vp_fmt = {
+				command = function(self, ctx)
+					return require("conform.util").from_node_modules("vp")(self, ctx)
+				end,
+				args = { "fmt", "--stdin-filepath", "$FILENAME" },
+				stdin = true,
+				cwd = function(self, ctx)
+					return require("conform.util").root_file({ "vite.config.ts", "vite.config.js" })(self, ctx)
+				end,
+				require_cwd = true,
+			},
 		},
 		-- <leader>uf / <leader>uF turn it off, e.g. to keep diffs small in legacy files (see snacks.lua)
 		format_on_save = function(bufnr)

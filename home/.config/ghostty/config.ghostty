@@ -1,6 +1,4 @@
-theme = TokyoNight Night
-# Neutral text makes Claude Code's lavender file paths stand out.
-foreground = #d7dae0
+theme = Rose Pine
 font-family = Cascadia Code NF
 font-size = 18
 window-height = 30

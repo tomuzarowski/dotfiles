@@ -8,21 +8,21 @@ return {
       globalstatus = true,
       theme = {
         normal = {
-          a = { fg = '#7aa2f7', bg = 'NONE' },
+          a = { fg = '#9ccfd8', bg = 'NONE' },
           b = { bg = 'NONE' },
           c = { bg = 'NONE' },
         },
         insert = {
-          a = { fg = '#9ece6a', bg = 'NONE' },
+          a = { fg = '#31748f', bg = 'NONE' },
         },
         visual = {
-          a = { fg = '#bb9af7', bg = 'NONE' },
+          a = { fg = '#c4a7e7', bg = 'NONE' },
         },
         replace = {
-          a = { fg = '#f7768e', bg = 'NONE' },
+          a = { fg = '#eb6f92', bg = 'NONE' },
         },
         command = {
-          a = { fg = '#e0af68', bg = 'NONE' },
+          a = { fg = '#f6c177', bg = 'NONE' },
         },
       },
     },
@@ -48,7 +48,7 @@ return {
         {
           require("lazy.status").updates,
           cond = require("lazy.status").has_updates,
-          color = { fg = "#ff9e64" },
+          color = { fg = "#ebbcba" },
         },
       },
       lualine_y = {

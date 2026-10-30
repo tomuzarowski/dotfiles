@@ -14,8 +14,8 @@ return {
 			scope = { char = "┊" },
 			animate = { duration = { step = 18, total = 375 } },
 		},
-		-- Line numbers, git signs, diagnostics and folds in a single column.
-		statuscolumn = { enabled = true },
+		-- Use Neovim's native sign column.
+		statuscolumn = { enabled = false },
 		-- Rounded floating prompt for vim.ui.input (e.g. LSP rename).
 		input = { enabled = true },
 		-- Highlight references to the symbol under the cursor.
@@ -26,24 +26,6 @@ return {
 	},
 	config = function(_, opts)
 		require("snacks").setup(opts)
-
-		-- The statuscolumn caches signs for 50ms (statuscolumn.refresh), so git signs placed just
-		-- after a buffer is drawn stay hidden until the cursor moves. Redraw once the cache expires.
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "GitSignsUpdate",
-			group = vim.api.nvim_create_augroup("statuscolumn-git-signs", { clear = true }),
-			callback = function(args)
-				local buf = args.data and args.data.buffer
-				if not buf then
-					return
-				end
-				vim.defer_fn(function()
-					if vim.api.nvim_buf_is_valid(buf) then
-						vim.api.nvim__redraw({ buf = buf, statuscolumn = true })
-					end
-				end, 60)
-			end,
-		})
 
 		-- Global, unlike Snacks.toggle.inlay_hints(), which only covers the current buffer
 		Snacks.toggle

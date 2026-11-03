@@ -38,6 +38,12 @@ vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move lines
 -- Disable annoying command line thing.
 vim.keymap.set("n", "q:", ":q<CR>")
 
+-- Move between windows.
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+
 -- Resize with arrows.
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<CR>")
 vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<CR>")

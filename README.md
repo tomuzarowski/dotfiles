@@ -10,6 +10,7 @@ This repository contains configurations for:
 - **AeroSpace** - macOS tiling window manager
 - **opencode** - AI coding assistant configuration
 - **Ghostty** - Terminal emulator configuration
+- **Rex** - Terminal multiplexer configuration and pane navigation
 - **Claude Code** - AI coding assistant settings, status line and skills
 
 ## Components
@@ -61,6 +62,16 @@ Located in `home/.config/ghostty/` - Configuration for the [Ghostty](https://gho
 Ghostty loads this file via the XDG configuration path:
 `~/.config/ghostty/config.ghostty`
 
+### Rex
+
+Located in `home/.config/rex/init.lua` - Lua configuration for [Rex](https://www.superlogical.com/rex/docs).
+
+Press `Ctrl+A`, release it, then `h`, `j`, `k`, or `l` to focus the pane to the left, below, above, or right. Each move starts with `Ctrl+A`; `Escape` cancels the sequence. Press `Ctrl+A` twice to send a normal `Ctrl+A` to the terminal (for example, to move to the beginning of a shell command).
+
+After editing the file, run `rex config reload`. Default Rex shortcuts remain available. Session data in `~/Library/Application Support/` stays outside this repository.
+
+The installer backs up an existing `~/.config/rex` directory to `rex.backup-<timestamp>` before linking the configuration.
+
 ### Claude Code
 
 Located in `home/.claude/` - Configuration for [Claude Code](https://code.claude.com):
@@ -99,6 +110,7 @@ Entries in `~/.claude` are linked one by one; existing files are moved to `<name
 - [AeroSpace](https://nikitabobko.github.io/AeroSpace/)
 - [opencode](https://opencode.ai)
 - [Ghostty](https://ghostty.org)
+- [Rex](https://www.superlogical.com/rex/docs)
 - [Claude Code](https://code.claude.com)
 - [jq](https://jqlang.org)
 - Git

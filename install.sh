@@ -50,6 +50,20 @@ git -C "$DOTFILES_DIR" config filter.claude-settings.clean "jq -S 'del(.autoMode
 git -C "$DOTFILES_DIR" config filter.claude-settings.smudge cat
 git -C "$DOTFILES_DIR" config filter.claude-settings.required true
 
+# Back up an existing Rex config directory before Stow replaces it with a link.
+if [ -d "$DOTFILES_DIR/home/.config/rex" ]; then
+  target="$HOME/.config/rex"
+  if [ -e "$target" ] && [ ! -L "$target" ] && [ ! "$target" -ef "$DOTFILES_DIR/home/.config/rex" ]; then
+    backup="$target.backup-$(date +%Y%m%d%H%M%S)"
+    while [ -e "$backup" ] || [ -L "$backup" ]; do
+      backup="$backup-1"
+    done
+    warn "Backing up existing Rex configuration: $target -> $backup"
+    mv "$target" "$backup"
+    backed_up_dirs+=(".config/rex")
+  fi
+fi
+
 # Remove existing symlinks for any package we're about to stow
 if [ -d "$DOTFILES_DIR/home/.config" ]; then
   for path in "$DOTFILES_DIR"/home/.config/*/; do

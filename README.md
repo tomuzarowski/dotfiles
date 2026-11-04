@@ -68,6 +68,8 @@ Located in `home/.config/rex/init.lua` - Lua configuration for [Rex](https://www
 
 Press `Ctrl+A`, release it, then `h`, `j`, `k`, or `l` to focus the pane to the left, below, above, or right. Each move starts with `Ctrl+A`; `Escape` cancels the sequence. Press `Ctrl+A` twice to send a normal `Ctrl+A` to the terminal (for example, to move to the beginning of a shell command).
 
+Press `Ctrl+A`, then `p` or `n` to switch to the previous or next tab.
+
 After editing the file, run `rex config reload`. Default Rex shortcuts remain available. Session data in `~/Library/Application Support/` stays outside this repository.
 
 The installer backs up an existing `~/.config/rex` directory to `rex.backup-<timestamp>` before linking the configuration.

@@ -1,4 +1,4 @@
--- Nawigacja między panelami jak w Herdr: Ctrl+A, potem h/j/k/l.
+-- Nawigacja między panelami: Ctrl+A, potem h/j/k/l.
 rex.bind("ctrl+a>h", "pane.focus", { direction = "left" })
 rex.bind("ctrl+a>j", "pane.focus", { direction = "down" })
 rex.bind("ctrl+a>k", "pane.focus", { direction = "up" })

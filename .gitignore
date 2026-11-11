@@ -1,4 +1,5 @@
 .DS_Store
+/nvim.log
 
 # Neovim lazy plugin lockfile
 home/.config/nvim/lazy-lock.json

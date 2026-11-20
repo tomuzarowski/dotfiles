@@ -6,25 +6,28 @@ return {
       section_separators = '',
       component_separators = '',
       globalstatus = true,
-      theme = {
-        normal = {
-          a = { fg = '#9ccfd8', bg = 'NONE' },
-          b = { bg = 'NONE' },
-          c = { bg = 'NONE' },
-        },
-        insert = {
-          a = { fg = '#31748f', bg = 'NONE' },
-        },
-        visual = {
-          a = { fg = '#c4a7e7', bg = 'NONE' },
-        },
-        replace = {
-          a = { fg = '#eb6f92', bg = 'NONE' },
-        },
-        command = {
-          a = { fg = '#f6c177', bg = 'NONE' },
-        },
-      },
+      theme = function()
+        local palette = require('rose-pine.palette')
+        return {
+          normal = {
+            a = { fg = palette.foam, bg = 'NONE' },
+            b = { bg = 'NONE' },
+            c = { bg = 'NONE' },
+          },
+          insert = {
+            a = { fg = palette.pine, bg = 'NONE' },
+          },
+          visual = {
+            a = { fg = palette.iris, bg = 'NONE' },
+          },
+          replace = {
+            a = { fg = palette.love, bg = 'NONE' },
+          },
+          command = {
+            a = { fg = palette.gold, bg = 'NONE' },
+          },
+        }
+      end,
     },
     sections = {
       lualine_a = {
@@ -48,7 +51,9 @@ return {
         {
           require("lazy.status").updates,
           cond = require("lazy.status").has_updates,
-          color = { fg = "#ebbcba" },
+          color = function()
+            return { fg = require('rose-pine.palette').rose }
+          end,
         },
       },
       lualine_y = {

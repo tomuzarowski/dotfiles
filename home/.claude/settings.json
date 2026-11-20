@@ -16,7 +16,7 @@
   "model": "opus",
   "modelSettings": {
     "claude-opus-5-5": {
-      "effortLevel": "high"
+      "effortLevel": "xhigh"
     }
   },
   "permissions": {
@@ -28,5 +28,6 @@
     "command": "bash ~/.claude/statusline-command.sh",
     "type": "command"
   },
-  "theme": "dark"
+  "theme": "auto",
+  "tui": "default"
 }

@@ -18,11 +18,39 @@ return {
 		statuscolumn = { enabled = false },
 		-- Rounded floating prompt for vim.ui.input (e.g. LSP rename).
 		input = { enabled = true },
+		-- Fuzzy finder + vim.ui.select replacement.
+		picker = {
+			enabled = true,
+			ui_select = true,
+			sources = {
+				files = {
+					exclude = { "node_modules", "yarn.lock", ".git" },
+				},
+				grep = {
+					exclude = { "node_modules", "yarn.lock", ".git" },
+				},
+			},
+		},
 		-- Highlight references to the symbol under the cursor.
 		words = { enabled = true },
 		-- Keep the UI responsive in huge files.
 		bigfile = { enabled = true },
 		quickfile = { enabled = true },
+	},
+	keys = {
+		{ "<C-p>", function() Snacks.picker.files({ hidden = true }) end, desc = "Find files, including hidden" },
+		{ "<C-b>", function() Snacks.picker.buffers() end, desc = "Show open buffers in cwd" },
+		{ "<leader>fb", function() Snacks.picker.buffers() end, desc = "Show open buffers in cwd" },
+		{ "<leader>fc", function() Snacks.picker.grep_word() end, desc = "Find string under cursor in cwd", mode = { "n", "x" } },
+		{ "<leader>ff", function() Snacks.picker.git_files() end, desc = "Find in git files" },
+		{ "<leader>fr", function() Snacks.picker.recent({ filter = { cwd = true } }) end, desc = "Show recent files" },
+		{ "<leader>fs", function() Snacks.picker.grep() end, desc = "Find string in cwd" },
+		{ "<leader>fl", function() Snacks.picker.resume() end, desc = "Find last search" },
+		{ "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Find diagnostics" },
+		{ "<leader>fh", function() Snacks.picker.help() end, desc = "Find help" },
+		{ "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Find keymaps" },
+		{ "<leader>fo", function() Snacks.picker.lsp_symbols() end, desc = "Find symbols in file" },
+		{ "<leader>fw", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Find symbols in workspace" },
 	},
 	config = function(_, opts)
 		require("snacks").setup(opts)

@@ -40,8 +40,10 @@ local transparent_groups = {
   'Normal', 'NormalNC', 'NormalFloat', 'FloatBorder', 'FloatTitle',
   'SignColumn', 'FoldColumn', 'LineNr', 'CursorLineNr', 'EndOfBuffer',
   'WinSeparator', 'VertSplit', 'MsgArea', 'StatusLine', 'StatusLineNC',
-  'TelescopeNormal', 'TelescopeBorder', 'TelescopePromptNormal', 'TelescopePromptBorder',
-  'TelescopeResultsNormal', 'TelescopeResultsBorder', 'TelescopePreviewNormal', 'TelescopePreviewBorder',
+  'SnacksPicker', 'SnacksPickerBorder', 'SnacksPickerTitle',
+  'SnacksPickerInput', 'SnacksPickerInputBorder',
+  'SnacksPickerList', 'SnacksPickerListBorder',
+  'SnacksPickerPreview', 'SnacksPickerPreviewBorder',
   'WhichKeyNormal', 'WhichKeyFloat',
   'GitSignsAdd', 'GitSignsChange', 'GitSignsDelete',
   'DiagnosticSignError', 'DiagnosticSignWarn', 'DiagnosticSignInfo', 'DiagnosticSignHint',
@@ -50,8 +52,10 @@ local transparent_groups = {
 local function clear_backgrounds()
   for _, group in ipairs(transparent_groups) do
     local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
-    hl.bg, hl.ctermbg = nil, nil
-    vim.api.nvim_set_hl(0, group, hl)
+    if next(hl) ~= nil then
+      hl.bg, hl.ctermbg = nil, nil
+      vim.api.nvim_set_hl(0, group, hl)
+    end
   end
 end
 

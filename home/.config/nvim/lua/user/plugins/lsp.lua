@@ -174,9 +174,14 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
+				if not client then
+					return
+				end
 				for _, map in ipairs(navigation_maps) do
 					if client:supports_method(map[2], args.buf) then
-						vim.keymap.set("n", map[1], "<cmd>Telescope " .. map[3] .. "<CR>", {
+						vim.keymap.set("n", map[1], function()
+							Snacks.picker[map[3]]()
+						end, {
 							buffer = args.buf,
 							desc = map[4],
 						})
@@ -194,7 +199,7 @@ return {
 						if #vim.lsp.get_clients({ bufnr = args.buf, method = map[2] }) == 0 then
 							local mapping = vim.api.nvim_buf_get_keymap(args.buf, "n")
 							for _, item in ipairs(mapping) do
-								if item.lhs == map[1] and item.rhs and item.rhs:lower() == ("<cmd>Telescope " .. map[3] .. "<CR>"):lower() then
+								if item.lhs == map[1] and item.desc == map[4] then
 									vim.keymap.del("n", map[1], { buffer = args.buf })
 									break
 								end
